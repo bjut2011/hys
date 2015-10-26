@@ -1,0 +1,15 @@
+<div class="header header-logged-in">
+  <div class="container clearfix" style="padding-top: 10px;" >
+	<img src="/logo.png" style="width: 130px;height: 60px;" class="tstart-toolbar-top" />
+    <ul class="top-nav" style="padding-left: 90px;" >
+      <li> <%= link_to "首页",  "/" %></li>
+      <li><a href="">个人健康中心</a></li>
+      <li><a href="">病历管理</a></li>
+      <li ><a href="" id="doctor_enter" >医生入口</a></li>
+    </ul>
+    <ul id="user-links">
+      <li>  <%= link_to t('sign_in'), login_path %> </li>
+    </ul>
+  </div>
+</div>
+

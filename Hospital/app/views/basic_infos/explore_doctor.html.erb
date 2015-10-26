@@ -1,0 +1,36 @@
+
+<div class="single-form-container" style="margin-left: 50px;">
+  <div class="boxed-group" id="login">
+    <h3>医生查找</h3>
+    <div class="boxed-group-inner">
+	<%= form_tag("/doctor", method: "get") do %>
+        <dl class="form flattened">
+          <dt>
+           <%= label_tag 'room','按科室查询:' %>
+          </dt>
+          <dd>
+          <%= select_tag(:room,'<option value="guanxin" >心血管</option><option value="gaoxueya" >高血压</option><option value="xinlve" >心律失常</option><option value="xinji" >心肌病</option><option value="xinzang" >先天性心脏病</option><option value="other" >其他疾病</option> '.html_safe,{:class=>"supershort"} ) %>  
+          </dd>
+        </dl>
+        <dl class="form flattened">
+          <dt>
+           <%= label_tag 'room','按科室查询:' %>
+          </dt>
+          <dd>
+          <%= select_tag(:named,'<option value="zhuren" >主任医师</option><option value="fuzhuren" >副主任医师</option><option value="other" >其他</option> '.html_safe,{:class=>"supershort"} ) %>  
+          </dd>
+        </dl>
+        <dl class="form flattened">
+          <dt>
+           <%= label_tag 'keyword','按关键字查询:' %>
+          </dt>
+          <dd>
+          <%= text_field_tag  'before_high', nil,class: "supershort", placeholder: "请输入2-3位数字" %>
+           </dd>
+        </dl>
+	<p style="height: 10px;" ></p>
+        <p> <%=submit_tag '确认查找', :class => "button primary" %> </p>
+      <% end %>
+    </div>
+  </div>
+</div>

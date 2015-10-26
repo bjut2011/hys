@@ -1,0 +1,35 @@
+// Place all the styles related to the BasicInfos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+textarea#course-desc1 {
+  width: 380px;
+}
+img#poster {
+  height: 310px;
+}
+
+a#main {
+    border-left-width: 20px;
+}
+select.supershort {
+    width: 150px;
+    height: 30px;
+}
+
+.ready-basic-case {
+   padding-left: 40px;
+}
+.commit-basic-case {
+   text-align: center;
+}
+.height-commit {
+	height: 30px
+}
+.small_label{
+	width:150px;
+}
+
+
+
+
+

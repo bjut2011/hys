@@ -1,0 +1,21 @@
+<div class="header header-logged-in">
+  <div class="container clearfix" style="padding-top: 10px;" >
+	<img src="/logo.png" style="width: 130px;height: 60px;" class="tstart-toolbar-top" />
+    <ul class="top-nav" style="padding-left: 90px;" >
+      <li> <%= link_to "首页",  "/" %></li>
+      <li><a href="<%= member_path(current_user.name) %>">个人健康中心</a></li>
+      <li><a href="<%= member_path(current_user.name) %>">病历管理</a></li>
+      <li><a href="<%= member_path(current_user.name) %>">咨询记录</a></li>
+      <li ><a href="<%= member_path(current_user.name) %>" id="doctor_enter" >医生入口</a></li>
+    </ul>
+    <ul id="user-links">
+      <li><%= link_to notifications_path do %>
+        <span class="notification-indicator <%= 'notification-indicator-unread' if @unread_count > 0 %>"><%= @unread_count %></span>
+      <% end %>
+      </li>
+      <li> <%= link_to current_user.name, member_path(current_user.name), :class => "name" %> </li>
+      <li> <%= link_to t("logout"), logout_path, method: "delete" %></li>
+    </ul>
+  </div>
+</div>
+
