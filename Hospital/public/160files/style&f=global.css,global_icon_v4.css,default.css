@@ -396,7 +396,7 @@ li{width:660px}.gd_ban
 .gd_ban_con{position:relative;z-index:2}.gd_ban
 .gd_ban_g{display:none;_display:block}.gd_ban:hover
 .gd_ban_g{display:block}.gd_ban_g{}.gd_ban_g
-.gd_ban_dir{background:url(/static/v4/style/global/roll-btn.png) no-repeat;height:65px;width:36px;margin-top:150px;display:block;padding:0;cursor:pointer}.gd_ban_g
+.gd_ban_dir{background:url(/img/roll-btn.png) no-repeat;height:65px;width:36px;margin-top:150px;display:block;padding:0;cursor:pointer}.gd_ban_g
 .gd_ban_left{background-position:-12px 0;position:absolute;left:0;top:0;z-index:3}.gd_ban_g
 .gd_ban_right{background-position:-80px 0;position:absolute;right:0;top:0;z-index:3}.gd_ban_g .gd_ban_left:hover{background-position:-12px -65px}.gd_ban_g .gd_ban_right:hover{background-position:-80px -65px}.gdb_top{z-index:3;position:absolute;top:0;left:0;right:0;height:48px;background:url(/static/v4/style/global_icon/bg_w.png) repeat}.gdb_top_back{position:absolute;top:0;left:0;right:0;height:48px;background:url(/static/v4/style/global_icon/bg_w.png) repeat;z-index:1}.gdb_top_con{position:relative;z-index:2}.gdb_top
 em{padding-left:25px;line-height:46px}.log_gdr{position:relative;padding-bottom:16px }.login_r,.hos_ad{padding-top:5px}.login_r li,.hos_ad

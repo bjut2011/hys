@@ -17,6 +17,13 @@ function search_1() {
 	return false;
 }
 
+function celerity_consult() {
+        var hostName = location.hostname;
+        var sUrl = "http://"+hostName+":"+location.port+"/createmyfaq";
+	location.href = sUrl;	
+	return false;
+}
+
 $('#ec_cs_pannel').hide();
 //setLogin('_status_login_div','_status_logout_div');
 $(function(){
@@ -226,6 +233,10 @@ $('#ec_cs_pannel').hide();
 	});
 	$("#btn_search_1").on('click', function() {
 		search_1();
+	});
+
+	$("#btn_celerity_consult").on('click', function() {
+		celerity_consult();
 	});
 
 	//微信 二维码

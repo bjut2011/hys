@@ -141,6 +141,9 @@ Onestep::Application.routes.draw do
 
   get "/account" => "users#edit", :as => "account"
   patch "/account" => "users#update"
+  get "/doctor_website" => "doctors#personal_website"
+  get "/doctor_plus" => "doctors#replus"
+  get "/doctor_consult" => "doctors#consult"
   get "/:member_name" => "users#show", :as => "member"
   get "/:member_name/showmystatus" => "users#showmystatus", :as => "showmystatus"
   delete "/:member_name/:course_name" => "courses#destroy"

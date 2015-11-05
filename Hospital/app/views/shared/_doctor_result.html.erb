@@ -21,17 +21,18 @@
           </div>
           <div class="search_list layout">
             <ul>
+                 <% @doctors.each do |doctor| %>
                                                    <li class="search_item docter_item">
                 <div class="left_img_big">
-                  <a href=""><img oncontextmenu="return(false);" src="160files/doctor_100001809.jpg"></a>
+		<a href=""><img oncontextmenu="return(false);" src="../<%= doctor.photo%>"></a>
                 </div>
                 <div class="right_mun">已预约人次 <strong>1780</strong></div>
                 <div class="right_btn"><a class="add_book patch-float-margin " type="1" docid="100001809" href="javascript:void(0);">收藏</a> <em>|</em> 
                 <a href="javascript:void(0);" class="addCom" docid="100001809" depid="100000711" ds="0" img="http://images.91160.com/upload/2912/doctor/1/doctor_100001809.jpg" uid="100000788" cid="2912" type="1" doctor_name="李玉" zcname="" unit_name="中国人民解放军第三0二医院" dep_name="肿瘤放射治疗中心">点评</a></div>
                 <div class="doc_info fl">
-                <h2><a href="http://www.91160.com/doctors/index/docid-100001809.html" title="李玉">李玉 </a><span>［主任医师］ </span> </h2>
+                <h2><a href="http://www.91160.com/doctors/index/docid-100001809.html" title="李玉"><%= doctor.name %> </a><span><%= doctor.title %> </span> </h2>
                 <div class="h_info layout">
-                <p>中国人民解放军第三0二医院 <br>肿瘤放射治疗中心</p>
+                <p> <%= doctor.hospital %> <br><%= doctor.department %></p>
                 </div>
                 <div class="doc_sbtn">
                 <ul class="fun_btn_ul layout">
@@ -43,12 +44,13 @@
                 </div>
                 </div>
                 <div class="doc_expert_in fs14 fl">
-               ...                </div>
+                <%= doctor.desc %></div>
                 <div class="doc_score fl">
                   <span class="score_mun fs14"></span>
                                     <span class="dp_links fs12"><a href="javascript:void(0);">暂无人点评</a></span>
                 </div>
               </li>
+              <% end %>
                            <li class="search_item docter_item">
                 <div class="left_img_big">
                   <a href=""><img oncontextmenu="return(false);" src="/160files/doctor_100205633_201502041613.jpg"></a>
@@ -135,63 +137,6 @@
               </li>
                            <li class="search_item docter_item">
                 <div class="left_img_big">
-                  <a href=""><img oncontextmenu="return(false);" src="/160files/doctor_100192690_201501081045.jpg"></a>
-                </div>
-                <div class="right_mun">已预约人次 <strong>216</strong></div>
-                <div class="right_btn"><a class="add_book patch-float-margin " type="1" docid="100192690" href="javascript:void(0);">收藏</a> <em>|</em> 
-                <a href="javascript:void(0);" class="addCom" docid="100192690" depid="100073523" ds="0" img="http://images.91160.com/upload/doctor/100193/doctor_100192690_201501081045.jpg" uid="100003140" cid="2912" type="1" doctor_name="方存忠" zcname="" unit_name="北京和润国际健康管理中心" dep_name="中医科">点评</a></div>
-                <div class="doc_info fl">
-                <h2><a href="" title="方存忠">方存忠 </a><span>［副主任医师］ </span> </h2>
-                <div class="h_info layout">
-                <p>北京和润国际健康管理中心 <br>中医科</p>
-                </div>
-                <div class="doc_sbtn">
-                <ul class="fun_btn_ul layout">
-                  <li class="gh_ico" title="可预约"><a href="" title="预约">预约</a></li>
-                  <li class="zx_ico_no" title="可咨询"><a href="javascript:void(0);" title="咨询">咨询</a></li>
-                  <li class="zz_ico_no" title="可加号"><a href="javascript:void(0);" title="加号">加号</a></li>
-                  <li class="vip_ico_no" title="私人医生"><a href="javascript:void(0);" title="私人医生">私人医生</a></li>
-                </ul>
-                </div>
-                </div>
-                <div class="doc_expert_in fs14 fl">
-               擅长用传统的中医正骨手法整复骨折脱位及急性软组织损伤;...                </div>
-                <div class="doc_score fl">
-                  <span class="score_mun fs14"></span>
-                                    <span class="dp_links fs12"><a href="javascript:void(0);">暂无人点评</a></span>
-                </div>
-              </li>
-                           <li class="search_item docter_item">
-                <div class="left_img_big">
-                  <a href=""><img oncontextmenu="return(false);" src="/160files/doctor_100192686_201501071758.jpg"></a>
-                </div>
-                <div class="right_mun">已预约人次 <strong>162</strong></div>
-                <div class="right_btn"><a class="add_book patch-float-margin " type="1" docid="100192686" href="javascript:void(0);">收藏</a> <em>|</em> 
-                <a href="javascript:void(0);" class="addCom" docid="100192686" depid="100073519" ds="0" img="http://images.91160.com/upload/doctor/100193/doctor_100192686_201501071758.jpg" uid="100003140" cid="2912" type="1" doctor_name="向红丁" zcname="" unit_name="北京和润国际健康管理中心" dep_name="内分泌科">点评</a></div>
-                <div class="doc_info fl">
-                <h2><a href="" title="向红丁">向红丁 </a><span>［主任医师］ </span> </h2>
-                <div class="h_info layout">
-                <p>北京和润国际健康管理中心 <br>内分泌科</p>
-                </div>
-                <div class="doc_sbtn">
-                <ul class="fun_btn_ul layout">
-                  <li class="gh_ico" title="可预约"><a href="" title="预约">预约</a></li>
-                  <li class="zx_ico_no" title="可咨询"><a href="javascript:void(0);" title="咨询">咨询</a></li>
-                  <li class="zz_ico_no" title="可加号"><a href="javascript:void(0);" title="加号">加号</a></li>
-                  <li class="vip_ico_no" title="私人医生"><a href="javascript:void(0);" title="私人医生">私人医生</a></li>
-                </ul>
-                </div>
-                </div>
-                <div class="doc_expert_in fs14 fl">
-               内分泌专业，尤以糖尿病、甲状腺、男性生殖内分泌和性早熟
-                </div>
-                <div class="doc_score fl">
-                  <span class="score_mun fs14"></span>
-                                    <span class="dp_links fs12"><a href="javascript:void(0);">暂无人点评</a></span>
-                </div>
-              </li>
-                           <li class="search_item docter_item">
-                <div class="left_img_big">
                   <a href=""><img oncontextmenu="return(false);" src="/160files/doctor_100019941.jpg"></a>
                 </div>
                 <div class="right_mun">已预约人次 <strong>138</strong></div>
@@ -213,62 +158,6 @@
                 </div>
                 <div class="doc_expert_in fs14 fl">
                ...                </div>
-                <div class="doc_score fl">
-                  <span class="score_mun fs14"></span>
-                                    <span class="dp_links fs12"><a href="javascript:void(0);">暂无人点评</a></span>
-                </div>
-              </li>
-                           <li class="search_item docter_item">
-                <div class="left_img_big">
-                  <a href=""><img oncontextmenu="return(false);" src="/160files/doctor_100205487_201502041557.jpg"></a>
-                </div>
-                <div class="right_mun">已预约人次 <strong>108</strong></div>
-                <div class="right_btn"><a class="add_book patch-float-margin " type="1" docid="100205487" href="javascript:void(0);">收藏</a> <em>|</em> 
-                <a href="javascript:void(0);" class="addCom" docid="100205487" depid="100084558" ds="0" img="http://images.91160.com/upload/doctor/100206/doctor_100205487_201502041557.jpg" uid="100013283" cid="2912" type="1" doctor_name="关庆维" zcname="" unit_name="北京同仁堂王府井中医医院" dep_name="中医科">点评</a></div>
-                <div class="doc_info fl">
-                <h2><a href="" title="关庆维">关庆维 </a><span>［主任医师］ </span> </h2>
-                <div class="h_info layout">
-                <p>北京同仁堂王府井中医医院 <br>中医科</p>
-                </div>
-                <div class="doc_sbtn">
-                <ul class="fun_btn_ul layout">
-                  <li class="gh_ico" title="可预约"><a href="" title="预约">预约</a></li>
-                  <li class="zx_ico_no" title="可咨询"><a href="javascript:void(0);" title="咨询">咨询</a></li>
-                  <li class="zz_ico_no" title="可加号"><a href="javascript:void(0);" title="加号">加号</a></li>
-                  <li class="vip_ico_no" title="私人医生"><a href="javascript:void(0);" title="私人医生">私人医生</a></li>
-                </ul>
-                </div>
-                </div>
-                <div class="doc_expert_in fs14 fl">
-               对三叉神经痛、中风、甲状腺肿瘤、咳喘、肾病、高烧、低热...                </div>
-                <div class="doc_score fl">
-                  <span class="score_mun fs14"></span>
-                                    <span class="dp_links fs12"><a href="javascript:void(0);">暂无人点评</a></span>
-                </div>
-              </li>
-                           <li class="search_item docter_item">
-                <div class="left_img_big">
-                  <a href=""><img oncontextmenu="return(false);" src="/160files/doctor_100205634_201502041613.jpg"></a>
-                </div>
-                <div class="right_mun">已预约人次 <strong>108</strong></div>
-                <div class="right_btn"><a class="add_book patch-float-margin " type="1" docid="100205634" href="javascript:void(0);">收藏</a> <em>|</em> 
-                <a href="javascript:void(0);" class="addCom" docid="100205634" depid="100084559" ds="0" img="http://images.91160.com/upload/doctor/100206/doctor_100205634_201502041613.jpg" uid="100013283" cid="2912" type="1" doctor_name="陈骏驰" zcname="" unit_name="北京同仁堂王府井中医医院" dep_name="内科">点评</a></div>
-                <div class="doc_info fl">
-                <h2><a href="" title="陈骏驰">陈骏驰 </a><span>［副主任医师］ </span> </h2>
-                <div class="h_info layout">
-                <p>北京同仁堂王府井中医医院 <br>内科</p>
-                </div>
-                <div class="doc_sbtn">
-                <ul class="fun_btn_ul layout">
-                  <li class="gh_ico" title="可预约"><a href="" title="预约">预约</a></li>
-                  <li class="zx_ico_no" title="可咨询"><a href="javascript:void(0);" title="咨询">咨询</a></li>
-                  <li class="zz_ico_no" title="可加号"><a href="javascript:void(0);" title="加号">加号</a></li>
-                  <li class="vip_ico_no" title="私人医生"><a href="javascript:void(0);" title="私人医生">私人医生</a></li>
-                </ul>
-                </div>
-                </div>
-                <div class="doc_expert_in fs14 fl">
-               擅长：心脑血管疾病、急症处理与慢性病防治。(高血压，冠...                </div>
                 <div class="doc_score fl">
                   <span class="score_mun fs14"></span>
                                     <span class="dp_links fs12"><a href="javascript:void(0);">暂无人点评</a></span>
@@ -308,7 +197,7 @@
           </div>
         </div>
       </div>
-      <div class="side w280 fr">
+      <div class="side w280 fr" style="display:none">
           
                     
           

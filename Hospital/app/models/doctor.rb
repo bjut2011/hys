@@ -1,12 +1,20 @@
 class Doctor < ActiveRecord::Base
-  attr_accessible :name, :avatar,:use_gravatar, :main_desc, :price, :url,:doctor_id
+  attr_accessible :name, :avatar,:use_gravatar, :main_desc,  :url,:doctor_id, :hospital, :room, :rank, :level, :sex, :speciality,:desc,:photo,:department,:title
   has_many :basic_cases
   has_many :replies
+  has_many :reservations
 
   validates :name,  presence: true, 
                     format: { without: /(\-| |\.|\/|\\)/, message: "不能包含横线, 斜线, 句点或空格" }
+  validates :hospital,  presence: true, 
+                    format: { without: /(\-| |\.|\/|\\)/, message: "不能包含横线, 斜线, 句点或空格" }
+  validates :room,  presence: true, 
+                    format: { without: /(\-| |\.|\/|\\)/, message: "不能包含横线, 斜线, 句点或空格" }
+  validates :rank,  presence: true, 
+                    format: { without: /(\-| |\.|\/|\\)/, message: "不能包含横线, 斜线, 句点或空格" }
   validates :main_desc, presence: true 
-  validates :price, presence: true, format: { with: /\d+/  }
+  validates :level, presence: true, format: { with: /\d+/  }
+  validates :sex, presence: true, format: { with: /male|female/  }
   validates :doctor_id, presence: true, uniqueness:true,format: { with: /\d+/  }
   validates :url, presence: true, format: { with: /http:\/\/[^\s]*/   }
 
@@ -55,11 +63,20 @@ class Doctor < ActiveRecord::Base
 		  {:check=>false, :code=>400,:msg=>"Not Found Doctor"}
  	else
 		basic_list = []
-		basic_cases = doctor.basic_cases.limit(10)
+		basic_cases = doctor.basic_cases.where(:has_reply=>false).limit(10)
 		basic_cases.each do |basic_case|
 			basic_case_id =  basic_case.id
 			basic_case_title = basic_case.main_desc
 			user_id = basic_case.user.id
+			process = basic_case.process
+			have_ct = false
+			if !basic_case.sick_assets.nil?
+				basic_case.sick_assets.each do |sick_asset|
+					if sick_asset.asset_type == "CT"
+						have_ct = true
+					end
+				end
+			end
 			if basic_case.public == true && basic_case.user.basic_info.edited == true
 				user_name = basic_case.user.basic_info.name 
 				user_age = basic_case.user.basic_info.age
@@ -69,7 +86,7 @@ class Doctor < ActiveRecord::Base
 				user_age = "not open"
 				user_gender = "not open"
 			end  
-			basic_list << {:basic_case_id =>basic_case_id, :basic_case_title=>basic_case_title, :user_id=>user_id, :user_name=>user_name, :user_age=>user_age, :user_gender=>user_gender }
+			basic_list << {:basic_case_id =>basic_case_id, :basic_case_title=>basic_case_title, :user_id=>user_id, :user_name=>user_name, :user_age=>user_age, :user_gender=>user_gender, :have_ct=>have_ct,:type=>process }
 		end
 		{:check=>true, :result=>basic_list}
 	end

@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024062916) do
+ActiveRecord::Schema.define(version: 20151029154617) do
 
   create_table "activities", force: true do |t|
     t.string   "action"
     t.integer  "user_id"
     t.integer  "trackable_id"
     t.string   "trackable_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "course_id"
   end
 
@@ -38,17 +38,19 @@ ActiveRecord::Schema.define(version: 20151024062916) do
     t.boolean  "public"
     t.integer  "doctor_id"
     t.string   "process"
+    t.boolean  "has_reply",   default: false
   end
 
   create_table "basic_infos", force: true do |t|
     t.string   "name"
+    t.datetime "birth"
     t.float    "height",        limit: 24
     t.float    "weight",        limit: 24
     t.string   "gender"
     t.boolean  "edited"
     t.integer  "user_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "age"
     t.string   "smokeinfo"
     t.string   "drink"
@@ -61,8 +63,8 @@ ActiveRecord::Schema.define(version: 20151024062916) do
     t.integer  "size"
     t.string   "content_type"
     t.string   "filename"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "body_signs", force: true do |t|
@@ -80,8 +82,8 @@ ActiveRecord::Schema.define(version: 20151024062916) do
   create_table "collaboratings", force: true do |t|
     t.integer  "course_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "collaboratings", ["course_id"], name: "index_collaboratings_on_course_id", using: :btree
@@ -89,8 +91,8 @@ ActiveRecord::Schema.define(version: 20151024062916) do
 
   create_table "comments", force: true do |t|
     t.text     "content"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "commentable_id"
     t.string   "commentable_type"
@@ -101,8 +103,8 @@ ActiveRecord::Schema.define(version: 20151024062916) do
   create_table "courses", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "title"
     t.string   "poster"
     t.integer  "user_id"
@@ -124,12 +126,17 @@ ActiveRecord::Schema.define(version: 20151024062916) do
     t.string   "name"
     t.string   "avatar"
     t.text     "main_desc"
-    t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "use_gravatar"
     t.string   "url"
     t.integer  "doctor_id"
+    t.string   "hospital"
+    t.string   "room"
+    t.string   "rank"
+    t.integer  "level"
+    t.string   "sex"
+    t.string   "speciality"
   end
 
   create_table "hyperlipidemia", force: true do |t|
@@ -155,8 +162,8 @@ ActiveRecord::Schema.define(version: 20151024062916) do
   create_table "messages", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "title"
     t.string   "poster"
     t.integer  "user_id"
@@ -167,8 +174,8 @@ ActiveRecord::Schema.define(version: 20151024062916) do
   create_table "notifications", force: true do |t|
     t.integer  "user_id"
     t.boolean  "unread",          default: true
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "action"
     t.integer  "notifiable_id"
     t.string   "notifiable_type"
@@ -197,8 +204,8 @@ ActiveRecord::Schema.define(version: 20151024062916) do
   end
 
   create_table "orders", force: true do |t|
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "notify_id"
     t.float    "total_fee",    limit: 24
     t.string   "trade_status"
@@ -212,8 +219,8 @@ ActiveRecord::Schema.define(version: 20151024062916) do
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "name"
   end
@@ -221,8 +228,8 @@ ActiveRecord::Schema.define(version: 20151024062916) do
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
     t.integer  "followed_user_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "relationships", ["followed_user_id"], name: "index_relationships_on_followed_user_id", using: :btree
@@ -236,6 +243,18 @@ ActiveRecord::Schema.define(version: 20151024062916) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "doctor_id"
+    t.string   "sick_sub_name"
+    t.boolean  "allow_plus",    default: false
+  end
+
+  create_table "reservations", force: true do |t|
+    t.integer  "support_number"
+    t.integer  "price"
+    t.string   "remark"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "doctor_id"
+    t.string   "price_type"
   end
 
   create_table "sick_assets", force: true do |t|
@@ -256,8 +275,8 @@ ActiveRecord::Schema.define(version: 20151024062916) do
   create_table "sick_cases", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "title"
     t.string   "poster"
     t.integer  "user_id"
@@ -268,8 +287,8 @@ ActiveRecord::Schema.define(version: 20151024062916) do
   create_table "sick_hists", force: true do |t|
     t.string   "title"
     t.text     "desc"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "poster"
     t.integer  "sick_case_id"
     t.boolean  "public"
@@ -309,8 +328,8 @@ ActiveRecord::Schema.define(version: 20151024062916) do
   create_table "users", force: true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "token"
     t.boolean  "admin"
     t.string   "name"
@@ -323,8 +342,8 @@ ActiveRecord::Schema.define(version: 20151024062916) do
 
   create_table "videos", force: true do |t|
     t.string   "title"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "course_id"
     t.integer  "position"
     t.text     "desc"
@@ -340,8 +359,8 @@ ActiveRecord::Schema.define(version: 20151024062916) do
   create_table "watchings", force: true do |t|
     t.integer  "user_id"
     t.integer  "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "watchings", ["course_id"], name: "index_watchings_on_course_id", using: :btree
