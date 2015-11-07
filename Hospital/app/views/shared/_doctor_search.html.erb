@@ -7,8 +7,7 @@
         <main>
              <%= render 'shared/head_nav' %>
              <div class="content w960 layout">
-             <%= render 'shared/conditions' %>
-             <%= render 'shared/doctor_result' %>
+             <%= render 'shared/doctor_result', :doctor_groups => doctor_groups, :process=>process  %>
              </div>
            </main>
 

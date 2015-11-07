@@ -6,6 +6,7 @@ class InfoController < ApplicationController
     @star_messages = Message.all.limit(6).order('id desc')
     @user = User.new
     session[:return_to] = request.url
+    @doctors = Doctor.where(:recommended=>1).limit(5)
     @count = User.all.count
     @users = User.order('id desc').page(params[:page]).per(60)
   end

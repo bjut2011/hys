@@ -8,6 +8,7 @@ Onestep::Application.routes.draw do
   post '/checkout' => "basic_infos#checkout"
   post '/checkfree' => "basic_infos#checkfree"
   post '/check_my_doctor' => "basic_infos#check_my_doctor"
+  get '/check_my_doctor' => "basic_infos#check_my_doctor"
 
   get '/orders/done' => "orders#done"
   post '/orders/notify' => "orders#notify"
@@ -39,11 +40,14 @@ Onestep::Application.routes.draw do
   resources :operations
   resources :password_resets
   resources :doctors
+  get "/doctor_index" => "doctors#doctor_index"
+  get "/doctors/commit/:id/" => "doctors#doctor_commit", :as=>"doctor_commit"
   post "/:basic_case_id/:doctor_id/create_reply" => "replies#create"
+  post "/:basic_case_id/update_plus" => "replies#update_plus"
   post "/:doctor_id/update_main_desc" => "doctors#update_main_desc"
   post "/:doctor_id/update_doctor_url" => "doctors#update_doctor_url"
   post "/:doctor_id/update_doctor_avatar" => "doctors#update_doctor_avatar"
-  post "/:doctor_id/update_doctor_price" => "doctors#update_doctor_price"
+  post "/:doctor_id/update_doctor_reservation" => "doctors#update_doctor_reservation"
   get "/:doctor_id/index_basic_cases" => "api#show_basic_cases"
   get "/:user_id/:basic_case_id/show_basic_info" => "api#show_basic_info"
   get "/:basic_case_id/show_basic_case" => "api#show_basic_case"
@@ -69,7 +73,6 @@ Onestep::Application.routes.draw do
 
   patch "/course" => "courses#update"
   get "/course" => "courses#index", :as => "course_index"
-  get "/doctor" => "doctors#index", :as => "doctor_index"
   post "/course" => "courses#create"
   get "/create_course" => "courses#new", :as => :create_course
 
@@ -132,21 +135,23 @@ Onestep::Application.routes.draw do
 
   get "/showmydiabetes" => "basic_infos#diabetes"
   patch "/update_mydiabetes" => "basic_infos#update_diabetes"
-
+  
+  get "/search/home_doctor" => "doctors#home_search"
+  get "/doctor_website" => "doctors#personal_website"
+  get "/doctor_plus" => "doctors#replus"
+  get "/doctor_consult" => "doctors#consult"
+  post "/consult/ajaxgetdoclist.html" => "doctors#getdoclist"
   get "/showmyhyperlipidemia" => "basic_infos#hyperlipidemia"
   patch "/update_hyperlipidemia" => "basic_infos#update_hyperlipidemia"
 
   post "/:member_name/follow" => "users#follow"
   post "/:member_name/unfollow" => "users#unfollow"
-
   get "/account" => "users#edit", :as => "account"
   patch "/account" => "users#update"
-  get "/doctor_website" => "doctors#personal_website"
-  get "/doctor_plus" => "doctors#replus"
-  get "/doctor_consult" => "doctors#consult"
   get "/:member_name" => "users#show", :as => "member"
   get "/:member_name/showmystatus" => "users#showmystatus", :as => "showmystatus"
   delete "/:member_name/:course_name" => "courses#destroy"
+  get "/:member_name/:basic_case_id/show_commit_case" => "basic_infos#show_commit_case" , :as => "show_commit_case"
   get "/:member_name/:message_name/editmessage" => "messages#edit" , :as => "edit_message"
   get "/:member_name/:basic_case_id/editcase" => "basic_infos#edit_case" , :as => "edit_basic_case"
   ##post "/:member_name/:basic_case_id/clonecase" => "basic_infos#clonecase" , :as => "clone_basic_case"
@@ -160,7 +165,7 @@ Onestep::Application.routes.draw do
   get "/:member_name/:position/editoper" => "basic_infos#edit_operation"
   get "/:basic_case_id/:position/edit_sick_asset" => "basic_infos#edit_sick_asset"
   get "/:member_name/add_sickness" => "basic_infos#add_sickness"
-  get "/:member_name/add_oper" => "basic_infos#add_oper"
+  get "/:member_name/add_operation" => "basic_infos#add_operation"
   get "/:basic_case_id/add_sick_asset" => "basic_infos#add_sick_asset"
   get "/:member_name/:course_name/add_video" => "courses#add_video"
   get "/:member_name/:sick_case_name/add_sick_hist" => "sick_cases#add_sick_hist"
@@ -175,7 +180,6 @@ Onestep::Application.routes.draw do
   post "/commit_ready" => "basic_infos#commit_ready"
   post "/:basic_case_id/commit" => "basic_infos#case_commit", :as=>"basic_case_commit"
   post "/:basic_case_id/free_commit" => "basic_infos#free_commit", :as=>"basic_case_free"
-  post "/:basic_case_id/:doctor_name/new_doctor" => "basic_infos#new_doctor", :as=>"basic_case_new"
+  post "/:basic_case_id/:doctor_name/:commit_status/new_doctor" => "basic_infos#new_doctor", :as=>"basic_case_new"
   get "/search/doctor" => "doctors#search"
-
 end

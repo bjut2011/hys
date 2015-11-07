@@ -7,11 +7,12 @@ skip_before_action :verify_authenticity_token
      @process = ""
   end
   def doctor_index
-     @doctor_groups = []
-     @doctors = Doctor.all
-     @doctors.in_groups_of(3, false) { |group| @doctor_groups << group }
+     @doctor_groups = Doctor.all
+     #@doctor_groups = []
+     #@doctors = Doctor.all
+     #@doctors.in_groups_of(3, false) { |group| @doctor_groups << group }
      @process = "commit"
-     render 'index'
+     render 'search'
   end
 
   def doctor_commit
@@ -106,18 +107,31 @@ skip_before_action :verify_authenticity_token
  	render :text => '{"result":400}'
      end
    end
-    
-  def search 
-      @doctors= Doctor.all
-  end
+
+   def search 
+     @doctor_groups = Doctor.all
+     @process = ""
+   end
+   
+   def personal_website
+   end
+   
+   def consult
+   end
   
-  def personal_website
-  end
-
-  def consult
-  end
-
-  def replus
-  end
+   def home_search
+      @cur_user ||= User.find_by_token(cookies[:token]) if cookies[:token]
+      @userid=""
+      @username=""
+      if @cur_user
+         @userid=@cur_user.id
+         @username=@cur_user.name
+      end
+      @doctors= Doctor.all
+   end
+   
+   def getdoclist
+     render :text => Doctor.all.limit(5).to_json
+   end
 
 end

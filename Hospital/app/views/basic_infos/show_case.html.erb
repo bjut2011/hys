@@ -3,41 +3,63 @@
     <p style="height: 30px;" ></p>
    <% if !@basic_case.reply.nil? %>
     <h1>医生回复</h1>
-    <p>诊断结果 : <%= @basic_case.reply.sick_name %> <%= @basic_case.reply.sick_sub_name %>  </p>
-    <p>问题回复 : <%= @basic_case.reply.main_desc %></p>
-    <p>加号结果 : <%= @basic_case.reply.allow_plus ? "加号成功":"加号失败"  %></p>
-    <p style="height: 70px;" ></p>
+    <hr>
+<dl class="dl-horizontal">
+      <dt>诊断结果 : </dt>
+      <dd><%= @basic_case.reply.sick_name %> <%= @basic_case.reply.sick_sub_name %></dd>
+      <dt>问题回复 : </dt>
+      <dd><%= @basic_case.reply.main_desc %></dd>
+      <dt>加号结果 : </dt>
+      <dd><%= @basic_case.reply.allow_plus ? "加号成功":"加号失败"  %></dd>
+    </dl>
+    <p style="height: 40px;" ></p>
    <% end %>
     <h1>一般信息</h1>
     <hr>
-    <p>主诉 : <%= @basic_case.main_desc %></p>
-    <p>详细描述 : <%= @basic_case.detail_desc %></p>
-    <p>诊疗经过 : <%= @basic_case.treat_desc %></p>
-    <p>目前情况 : <%= t(@basic_case.now_desc) %></p>
-    <p style="height: 40px;" ></p>
+<dl class="dl-horizontal">
+      <dt>主诉 : </dt>
+      <dd><%= @basic_case.main_desc %></dd>
+      <dt>详细描述 : </dt>
+      <dd><%= @basic_case.detail_desc %></dd>
+      <dt>诊疗经过 : </dt>
+      <dd><%= @basic_case.treat_desc %></dd>
+      <dt>目前情况 : </dt>
+      <dd><%= t(@basic_case.now_desc) %></dd>
+    </dl>
+    <p style="height: 70px;" ></p>
     
     <h1>体征信息</h1>
     <hr>
-    <p>体温 : <%= @basic_case.body_sign.temperature %></p>
-    <p>脉搏 : <%= @basic_case.body_sign.pulse %></p>
-    <p>高压 : <%= @basic_case.body_sign.high_pressure %></p>
-    <p>低压 : <%= @basic_case.body_sign.low_pressure %></p>
-    <p>双下肢是否肿胀 : <%= (@basic_case.body_sign.swelling.nil? or @basic_case.body_sign.swelling.blank?) ? "否": t(@basic_case.body_sign.swelling) %></p>
-    <p>其他体征 : <%= t(@basic_case.body_sign.status_name.split)  %></p>
-    <p style="height: 40px;" ></p>
+<dl class="dl-horizontal">
+      <dt>体温 : </dt>
+      <dd><%= @basic_case.body_sign.temperature %></dd>
+      <dt>脉搏 : </dt>
+      <dd><%= @basic_case.body_sign.pulse %></dd>
+      <dt>高压 : </dt>
+      <dd><%= @basic_case.body_sign.high_pressure %></dd>
+      <dt>低压 : </dt>
+      <dd><%= @basic_case.body_sign.low_pressure %></dd>
+      <dt>双下肢是否肿胀 : </dt>
+      <dd><%= (@basic_case.body_sign.swelling.nil? or @basic_case.body_sign.swelling.blank?) ? "否": t(@basic_case.body_sign.swelling) %></dd>
+      <dt>其他体征 : </dt>
+      <dd><%= t(@basic_case.body_sign.status_name.split)  %></dd>
+    </dl>
+    <p style="height: 70px;" ></p>
 
     <% @basic_case.sick_assets.each do |sick_asset| %>
-    <p style="height: 20px;" ></p>
+    <p style="height: 40px;" ></p>
     <h3> 附件名称 : <%= sick_asset.title %> </h3>
     <hr>
-    <ul>
-      <li>附件描述 : <%= sick_asset.desc %></li>
-      <li>附件类型 : <%= t(sick_asset.asset_type) %></li>
-      <li>查看附件 : <a href="http://<%= Settings.qiniu.bucket_domain %>/<%= sick_asset.asset %>"><%= sick_asset.filename %></a> </li>
-    </ul>
+<dl class="dl-horizontal">
+      <dt>附件描述 : </dt>
+      <dd><%= sick_asset.desc %></dd>
+      <dt>附件类型 : </dt>
+      <dd><%= t(sick_asset.asset_type) %></dd>
+      <dt>查看附件 : </dt>
+      <dd><a href="http://<%= Settings.qiniu.bucket_domain %>/<%= sick_asset.asset %>"><%= sick_asset.filename %></a></dd>
+    </dl>
 <div class="download-btn">
-  <%= link_to '下载咨询附件', download_sick_hist_path(:asset => sick_asset.asset),
-    class: "minibutton primary" %>
+  <%= link_to '下载咨询附件', download_sick_hist_path(:asset => sick_asset.asset), class: "minibutton primary" %>
 </div>
      <% end %>
 

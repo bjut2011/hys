@@ -10,9 +10,56 @@ function search() {
 	location.href = JYUrl('main','search',{search_key:search_key,serch_type:serch_type, no_city:noCity});	
 	return false;
 }
+
+function setvalue(idvalue,sUrl){
+         var cbox = document.getElementById("id_"+idvalue);
+         var para=null;
+         if(cbox){
+            if (cbox.checked){
+             para=idvalue+"="+cbox.checked;
+             sUrl+="&";
+             sUrl+=para;
+            }
+         }
+         return sUrl;
+          
+        }
 function search_1() {
         var hostName = location.hostname;
-        var sUrl = "http://"+hostName+":"+location.port+"/search/doctor";
+        var cmyocardiosis = document.getElementById('id_myocardiosis');
+        var sUrl = "http://"+hostName+":"+location.port+"/search/home_doctor?";
+        var myocardiosis=null
+        if (cmyocardiosis !=null)
+        {
+           myocardiosis=cmyocardiosis.checked;
+        }
+        sUrl +=("myocardiosis="+myocardiosis);
+        sUrl=setvalue("coronary",sUrl);
+        sUrl=setvalue("arhythmia",sUrl);
+        sUrl=setvalue("chd",sUrl);
+        sUrl=setvalue("valvulopathy",sUrl);
+        sUrl=setvalue("pericardial",sUrl);
+	sUrl=setvalue("heart-failure",sUrl);
+        sUrl=setvalue("chest",sUrl);
+        sUrl=setvalue("dyspnea",sUrl);
+        sUrl=setvalue("palpitation",sUrl);
+        sUrl=setvalue("pectoralgia",sUrl);
+        sUrl=setvalue("fever",sUrl);
+        sUrl=setvalue("blackness",sUrl);
+        sUrl=setvalue("lossconsciousness",sUrl);
+        sUrl=setvalue("faint",sUrl);
+        sUrl=setvalue("edema",sUrl);
+        sUrl=setvalue("cyanosis",sUrl);
+        sUrl=setvalue("ecchymosis",sUrl);
+        sUrl=setvalue("headache",sUrl);
+        sUrl=setvalue("head",sUrl);
+        sUrl=setvalue("vision",sUrl);
+	sUrl=setvalue("beijing",sUrl);
+        sUrl=setvalue("shanghai",sUrl);
+        sUrl=setvalue("fw",sUrl);
+        sUrl=setvalue("xh",sUrl);
+        
+
 	location.href = sUrl;	
 	return false;
 }
