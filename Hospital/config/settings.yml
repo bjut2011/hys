@@ -1,0 +1,25 @@
+default: &default
+  image:
+    default_poster: 'http://media.haoqicat.com/course_poster/default.png'
+    default_posters_dir: 'default_posters/'
+    default_avatar: "http://www.gravatar.com/avatar/default.png"
+  alipay:
+    site: 'your site name'
+    return_url: 'http://yoursite.com/orders/done'
+    notify_url: 'http://yoursite.com/orders/notify'
+  video:
+    url: 'http://'
+  qiniu:
+    access_key: '23UPGX38WBcWdjtaJhBgQA6Vyg4tHAzM9_beDAk0'
+    secret_key: 'DSxn_q4MErTsZ7P5B8tbEWywDkoNbXDeNU6C1gFO'
+    bucket: 'hospital'
+    bucket_domain: '7xmw39.com1.z0.glb.clouddn.com'
+production:
+  <<: *default
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  default_password: ''
