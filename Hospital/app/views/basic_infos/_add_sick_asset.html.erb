@@ -54,22 +54,8 @@ $(document).ready(function() {
         </dd>
       </dl>
     <% end %>
-    <%= qiniu_video_uploader_form callback_url: sick_assets_path,
-      bucket:        "#{Settings.qiniu.bucket}",
-      id:            'create-video-uploader',
-      callback_method: 'POST',
-      custom_fields: { basic_case_id: basic_case.id },
-      progress_bar_id: 'progress-bar' do %>
-
-      <a class="fileupload-btn fileupload-video">
-        <i class="fileupload-icon fa fa-upload"></i>
-        <input id="fileupload" name="file" type="file">
-        <span id="upload-button-text">上传检查资料</span>
-      </a>
-      <div class="bar" id="progress-bar"></div>
-    <% end %>
 </div>
-	 <div class="secondary-info" style="display:none">
+	 <div class="secondary-info">
     <p id="video-filename"></p>
     <%= qiniu_video_uploader_form callback_url: sick_assets_path,
       bucket:        "#{Settings.qiniu.bucket}",
