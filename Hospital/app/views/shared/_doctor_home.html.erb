@@ -70,7 +70,7 @@ function marqueeStart(i, direction){
         <ul id="marquee1_1">
            <% @doctors.each do |doctor| %>
           <li>
-            <div class="layout mt20"><a href="/doctor_website" class="fl c_doca">
+            <div class="layout mt20"><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>" class="fl c_doca">
               <% if doctor.avatar.include? "http" %>  
               <img oncontextmenu="return(false);" src="<%= doctor.avatar%>" alt="" width="90" height="100">
               <% else %>
@@ -78,15 +78,15 @@ function marqueeStart(i, direction){
                 <% end %>  
               </a>
               <div class="fl d_info">
-                <p><a href="/doctor_website" class="d_name"><%= doctor.name%></a></p>
+                <p><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>" class="d_name"><%= doctor.name%></a></p>
                 <p class="fs12 gray_1"><%= doctor.rank%></p>
               </div>
             </div>
             <div class="mt20 d_hos">
-              <p class=""><a href="" class="hos_n word_hid"><%= doctor.room%></a><a href="" class="gray_1 dep_n word_hid"></a></p>
+              <p class=""><a href="" class="hos_n word_hid"><%= doctor.hospital%></a><a href="" class="gray_1 dep_n word_hid"><%= doctor.room%></a></p>
               <p class="fs12 gray_1 mt8 d_det"><%= doctor.speciality%></p>
             </div>
-            <div class="doc_bottom"><a href="/doctor_website" ><span class="btn btn_con fl">加号</span></a><a href="/doctor_website"><span class="btn btn_con fr">咨询</span></a></div>
+            <div class="doc_bottom"><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>" ><span class="btn btn_con fl">加号</span></a><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>"><span class="btn btn_con fr">咨询</span></a></div>
           </li>
           <% end %> 
         </ul>
@@ -96,4 +96,4 @@ function marqueeStart(i, direction){
     </div>
   </div>
 </div>
-<script type="text/javascript">marqueeStart(1, "left");</script>
+<!--<script type="text/javascript">marqueeStart(1, "left");</script>-->

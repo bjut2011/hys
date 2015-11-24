@@ -13,11 +13,11 @@
                                         <h4><span id="_ny_new_loginname"><%= current_user.name  %></span></h4>
                                     </li>
                                     <li class="user-min-btn" style="padding:20px 0px;">
-                                        <span class="fl"><a href="">健康中心</a></span>
+                                        <span class="fl"><a href="/<%= current_user.name  %>">健康中心</a></span>
                                         <span class="login-out fr"><a  data-method="delete" class="" href="/logout">退出登录</a></span>
                                     </li>
                                     <li>
-                                        <div class="log_add">
+                                        <div class="log_add" style="display:none">
                                             <div class="log_add_con">
                                                 <ul>
                                                     <li><a href="" class="def_a def_yu" target="_blank;">

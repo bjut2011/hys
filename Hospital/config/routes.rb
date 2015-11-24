@@ -27,7 +27,9 @@ Onestep::Application.routes.draw do
   get "/blog/:id" => "posts#show", :as => "blog"
   get "/blog/:id/edit" => "posts#edit", :as => "edit_blog"
   get "/write_blog" => "posts#new"
-
+  get "/ajax/getforumbycategory.html"  => "info#getdocs", :defaults => { :format => 'json' }
+  post "/ajax/getforumbycategory.html"  => "info#getdocs", :defaults => { :format => 'json' }
+  get "/healthcenter"  => "users#health_center"
   # Use patch verb for editing posts, use put verb for creating a new post
   match 'blog_images', to: 'blog_images#create', via: [:put, :patch]
 
@@ -40,7 +42,7 @@ Onestep::Application.routes.draw do
   resources :operations
   resources :password_resets
   resources :doctors
-  get "/doctor_index" => "doctors#doctor_index"
+  get "/doctor_index" => "doctors#home_search"
   get "/doctors/commit/:id/" => "doctors#doctor_commit", :as=>"doctor_commit"
   post "/:basic_case_id/:doctor_id/create_reply" => "replies#create"
   post "/:basic_case_id/update_plus" => "replies#update_plus"

@@ -111,6 +111,7 @@ skip_before_action :verify_authenticity_token
    def search 
      @doctor_groups = Doctor.all
      @process = ""
+     @user = current_user
    end
    
    def personal_website
@@ -126,6 +127,10 @@ skip_before_action :verify_authenticity_token
       if @cur_user
          @userid=@cur_user.id
          @username=@cur_user.name
+      end
+      @neworsubmit=false
+      if  params[:neworsubmit]
+          @neworsubmit=true
       end
       @doctors= Doctor.all
    end

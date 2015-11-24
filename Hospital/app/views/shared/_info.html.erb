@@ -17,7 +17,17 @@
                             </a>
                         </div>
                         <div class="layout com_list">
-                            <ul id="forum_list"><li><i class="dot">◆</i><p class="word_hid"><a href="http://www.91160.com/forum/detail/id-9862.html" class="fs14" title="中南大学湘雅二医院妇产科怎么样?">中南大学湘雅二医院妇产科怎么样?</a></p><span class="fr gray_2 word_hid " title="笨小猪"><i class="g_icon male"></i>笨小猪</span></li><li><i class="dot">◆</i><p class="word_hid"><a href="http://www.91160.com/forum/detail/id-9861.html" class="fs14" title="湖南省人民医院儿科怎么样?">湖南省人民医院儿科怎么样?</a></p><span class="fr gray_2 word_hid " title="笨小猪"><i class="g_icon male"></i>笨小猪</span></li><li><i class="dot">◆</i><p class="word_hid"><a href="http://www.91160.com/forum/detail/id-9860.html" class="fs14" title="武汉市第一医院好不好?">武汉市第一医院好不好?</a></p><span class="fr gray_2 word_hid " title="莫欺少年心"><i class="g_icon male"></i>莫欺少年心</span></li><li><i class="dot">◆</i><p class="word_hid"><a href="http://www.91160.com/forum/detail/id-9857.html" class="fs14" title="武汉大学人民医院怎么去?">武汉大学人民医院怎么去?</a></p><span class="fr gray_2 word_hid " title="情何以琛"><i class="g_icon male"></i>情何以琛</span></li><li><i class="dot">◆</i><p class="word_hid"><a href="http://www.91160.com/forum/detail/id-9856.html" class="fs14" title="东南大学附属中大医院的地址在哪里?">东南大学附属中大医院的地址在哪里?</a></p><span class="fr gray_2 word_hid " title="有何不可"><i class="g_icon male"></i>有何不可</span></li><li><i class="dot">◆</i><p class="word_hid"><a href="http://www.91160.com/forum/detail/id-9853.html" class="fs14" title="南京市妇幼保健院挂号费用多少?">南京市妇幼保健院挂号费用多少?</a></p><span class="fr gray_2 word_hid " title="八度余温"><i class="g_icon male"></i>八度余温</span></li><li><i class="dot">◆</i><p class="word_hid"><a href="http://www.91160.com/forum/detail/id-9852.html" class="fs14" title="中国人民解放军第八一医院专家门诊挂号需要预约吗?">中国人民解放军第八一医院专家门诊挂号需要预约吗?</a></p><span class="fr gray_2 word_hid " title="人情冷暖薄如纸"><i class="g_icon male"></i>人情冷暖薄如纸</span></li><li><i class="dot">◆</i><p class="word_hid"><a href="http://www.91160.com/forum/detail/id-9851.html" class="fs14" title="湖南省儿童医院儿童保健所都看哪些项目?">湖南省儿童医院儿童保健所都看哪些项目?</a></p><span class="fr gray_2 word_hid " title="高冷女神"><i class="g_icon male"></i>高冷女神</span></li><li><i class="dot">◆</i><p class="word_hid"><a href="http://www.91160.com/forum/detail/id-9850.html" class="fs14" title="湖南省肿瘤医院乳腺内科怎么样?">湖南省肿瘤医院乳腺内科怎么样?</a></p><span class="fr gray_2 word_hid " title="国民欧巴"><i class="g_icon male"></i>国民欧巴</span></li><li><i class="dot">◆</i><p class="word_hid"><a href="http://www.91160.com/forum/detail/id-9849.html" class="fs14" title="中南大学湘雅医院双休日可以网上预约挂号吗?">中南大学湘雅医院双休日可以网上预约挂号吗?</a></p><span class="fr gray_2 word_hid " title="胸不小怎么平天下"><i class="g_icon male"></i>胸不小怎么平天下</span></li><li><i class="dot">◆</i><p class="word_hid"><a href="http://www.91160.com/forum/detail/id-9847.html" class="fs14" title="湖南中医药大学第二附属医院好不好?">湖南中医药大学第二附属医院好不好?</a></p><span class="fr gray_2 word_hid " title="青吟"><i class="g_icon male"></i>青吟</span></li><li><i class="dot">◆</i><p class="word_hid"><a href="http://www.91160.com/forum/detail/id-9846.html" class="fs14" title="小孩近视怎么办？带着疑问跟我一起走进眼科的世界 ">小孩近视怎么办？带着疑问跟我一起走进眼科的世界 </a></p><span class="fr gray_2 word_hid " title="yuki990"><i class="g_icon male"></i>yuki990</span></li><li><i class="dot">◆</i><p class="word_hid"><a href="http://www.91160.com/forum/detail/id-9845.html" class="fs14" title="小孩近视怎么办？带着疑问跟我一起走进眼科的世界">小孩近视怎么办？带着疑问跟我一起走进眼科的世界</a></p><span class="fr gray_2 word_hid " title="yuki990"><i class="g_icon male"></i>yuki990</span></li><li><i class="dot">◆</i><p class="word_hid"><a href="http://www.91160.com/forum/detail/id-9843.html" class="fs14" title="武汉大学中南医院好不好?">武汉大学中南医院好不好?</a></p><span class="fr gray_2 word_hid " title="大彪哥"><i class="g_icon male"></i>大彪哥</span></li></ul>
+                            <ul id="forum_list">
+                             <% @docs.each do |doc| %>
+                               <li>
+                               <i class="dot">◆</i>
+                               <p class="word_hid">
+                                <a href="<%=doc["url"]%>" class="fs14" title="<%=doc["title"]%>"><%=doc["title"]%></a>
+                               </p><span class="fr gray_2 word_hid " title="">
+                                <i class="g_icon male"></i>"<%=doc["author"]%></span>
+                                </li>
+                              <% end %>
+                           </ul>
                         </div>
                     </div>
                     <div class="fr w280">
@@ -46,14 +56,14 @@
                 id: doc.forum_id
             });
             html += '<li><i class="dot">◆</i>';
-            html += '<p class="word_hid"><a href="' + url + '" class="fs14" title="' + doc.title + '">' + doc.title + '</a></p>';
-            html += '<span class="fr gray_2 word_hid " title="' + doc.user_name + '">';
+            html += '<p class="word_hid"><a href="' + doc.url + '" class="fs14" title="' + doc.title + '">' + doc.title + '</a></p>';
+            html += '<span class="fr gray_2 word_hid " title="' + doc.author + '">';
             if (doc.sex) {
                 html += '<i class="g_icon female"></i>';
             } else {
                 html += '<i class="g_icon male"></i>';
             }
-            html += doc.user_name + '</span></li>';
+            html += doc.author + '</span></li>';
         });
         $("#forum_list").html(html);
     },

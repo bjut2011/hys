@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   layout 'users/edit', :only => [:edit, :edit_avatar]
   before_filter :redirect_to_root_if_logged_in, only: [:signup, :login]
-  before_filter :check_login, :only => [:edit, :update, :update_avatar, :edit_avatar, :restore_gravatar, :follow, :unfollow]
+  before_filter :check_login, :only => [:edit, :update, :update_avatar, :edit_avatar, :restore_gravatar, :follow, :unfollow, :health_center]
 
   def login
     @user = User.new
@@ -72,8 +72,9 @@ class UsersController < ApplicationController
       Hyperlipidemia.create!(:user_id=>@user.id,:ishave=>false,:diagnosis_date=>DateTime.new(2001,2,3) )
       basic_case = BasicCase.create!(:user_id =>@user.id,:public=>true)
       BodySign.create!(:basic_case_id=>basic_case.id,:swelling=>"",:status_name=>"")
-      cookies.permanent[:token] = @user.token
-      redirect_to member_path(@user.name), :notice => t('signed_up')
+      #cookies.permanent[:token] = @user.token
+      #redirect_to member_path(@user.name), :notice => t('signed_up')
+      redirect_to :login
     else
       flash[:notice] = @user.errors.full_messages.first
       render :signup
@@ -85,7 +86,8 @@ class UsersController < ApplicationController
     @user ||= User.find_by(email: params[:login])
     if @user && @user.authenticate(params[:password])
       cookies.permanent[:token] = @user.token
-      redirect_to member_path(@user.name), :notice => '登陆成功'
+      #redirect_to member_path(@user.name), :notice => '登陆成功'
+      redirect_to "/"
     else
       flash[:notice] = t('invalid_name_or_password')
       redirect_to :login
@@ -128,4 +130,11 @@ class UsersController < ApplicationController
     current_user.unfollow!(user)
     render :text => "1"
   end
+  
+  def health_center
+     if current_user
+          redirect_to "/"+current_user.name
+     end
+  end
+
 end
