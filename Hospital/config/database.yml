@@ -37,7 +37,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: onestep_production
+  database: onestep_development
   host: 123.56.109.236
   pool: 5
   username: root

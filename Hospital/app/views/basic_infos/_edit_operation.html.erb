@@ -8,7 +8,7 @@
         singleFileUploads: true,
         removeProgressBarWhenCompleted: false,
         onFilesAdd: function(file) {
-          types = /(\.|\/)(jpg|png|mov|mp4)$/i;
+          types = /(\.|\/)(doc|docx|jpg|png|mov|mp4)$/i;
           if (types.test(file.type) || types.test(file.name)) {
             if (file.size > 100000000) {
               alert("上传失败：" + file.name + " 手术信息太大，超过100M");
@@ -68,12 +68,12 @@ $('input#submit_operation_info1').click(function(){
       <dl class="form">
         <dt>
           <%= f.hidden_field :id %>
-          <%= f.label '手术/外伤名称' %>
+          <%= f.label '手术/外伤名称' %>&nbsp;&nbsp;&nbsp;&nbsp;如:一次XX手术
         </dt>
         <dd><%= f.text_field :title, id: "video-title" %></dd>
       </dl>
       <dl class="form">
-        <dt><%= f.label '病情简要描述' %></dt>
+        <dt><%= f.label '本次手术简要描述' %></dt>
         <dd>
           <%= f.text_area :desc, id: "video-desc", class: "long short", rows: '8' %>
         </dd>

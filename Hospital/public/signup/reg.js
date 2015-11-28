@@ -175,7 +175,7 @@ $(function() {
 		if(_validate(user_phonenum) 
 	//	&& _validate(_authCode) 
 		&& _validate(user_name) 
-		&& _validate(user_email) 
+	//      && _validate(user_email) 
 		&& _validate(user_password) 
 //		&& _validate(_truename)
 //		&& _validate(_card)

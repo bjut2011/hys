@@ -1,5 +1,8 @@
 Onestep::Application.routes.draw do
 
+  get 'articles/new'
+  get 'articles/show'
+
   root :to => 'info#marketing'
   get '/api/money'  => 'api#money'
 
@@ -14,7 +17,7 @@ Onestep::Application.routes.draw do
   post '/orders/notify' => "orders#notify"
   #get "/orders/new" => "orders#new",  :as => "new_order"
   get "/download" => "videos#download", :as => "download_video"
-  get "/download" => "sick_hists#download", :as => "download_sick_hist"
+  get "/download" => "sick_assets#download", :as => "download_sick_asset"
 
   get "about" => "about#main", :as => "about"
   get "about/team" => "about#team"
@@ -88,6 +91,7 @@ Onestep::Application.routes.draw do
   post "/message" => "messages#create"
   get "/create_message" => "messages#new", :as => :create_message
 
+  get "/perfectdata" => "users#perfectdata", :as => "user_perfectdata"
   get "/members" => "users#index", :as => "user_index"
   post "/members" => "users#create"
   put "/crop" => "users#crop", :as => "crop"
@@ -125,6 +129,7 @@ Onestep::Application.routes.draw do
   get "/showmyinfo" => "basic_infos#edit"
   get "/editmysick" => "basic_infos#edit_sick"
   get "/editmyoper" => "basic_infos#edit_oper"
+  get "/editmyhist" => "basic_infos#edit_hist"
   #get "/edited_all_case" => "basic_infos#edited_all_case"
   #get "/change_all_case" => "basic_infos#change_all_case"
   get "/explore_doctor" => "basic_infos#explore_doctor"
@@ -162,7 +167,7 @@ Onestep::Application.routes.draw do
   #get "/:member_name/:course_name(/:position)" => "courses#show", :constraints => {:position => /\d+/} # "/:xxx/:xxx" will conflict with many things, so have to put bottom
   get "/:member_name/:sick_case_name(/:position)/showcase" => "sick_cases#show", :constraints => {:position => /\d+/} # "/:xxx/:xxx" will conflict with many things, so have to put bottom
   get "/:member_name/:course_name/:position/edit" => "courses#edit_video"
-  get "/:member_name/:sick_case_name/:position/edithist" => "sick_cases#edit_sick_hist"
+  get "/:member_name/:position/edithist" => "basic_infos#edit_sick_hist"
   get "/:member_name/:position/editsick" => "basic_infos#edit_sickness"
   get "/:member_name/:position/editoper" => "basic_infos#edit_operation"
   get "/:basic_case_id/:position/edit_sick_asset" => "basic_infos#edit_sick_asset"
@@ -170,7 +175,7 @@ Onestep::Application.routes.draw do
   get "/:member_name/add_operation" => "basic_infos#add_operation"
   get "/:basic_case_id/add_sick_asset" => "basic_infos#add_sick_asset"
   get "/:member_name/:course_name/add_video" => "courses#add_video"
-  get "/:member_name/:sick_case_name/add_sick_hist" => "sick_cases#add_sick_hist"
+  get "/:member_name/add_sick_hist" => "basic_infos#add_sick_hist"
   patch "/update_video/:id" => "videos#update"
   patch "/update_sick_hist/:id" => "sick_hists#update"
   patch "/update_sickness/:id" => "sicknesses#update"

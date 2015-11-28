@@ -1,0 +1,8 @@
+$('.flash-message').get(0).innerHTML='病史更新成功!';
+$('.playlist-container').replaceWith("<%= escape_javascript render 'basic_infos/all_added_sick_hists', :user=>@user %>");
+$('.playlist li a.video').removeClass('active');
+$('.playlist li').removeClass('selected');
+$('.playlist li a.video').eq(<%= @sick_hist.position - 1 %>).addClass('active');
+$('.playlist li').eq(<%= @sick_hist.position - 1 %>).addClass('selected');
+
+

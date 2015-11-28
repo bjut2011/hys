@@ -27,15 +27,6 @@ if(kfhour < 9 || kfhour >=21){
 	$('#kfonline').html("<img style='margin-top:-60px;margin-left:-20px;' src='"+_default_v4_path_+"/style/global/kfoffline.jpg'>");
 }
 else{
-	if($.cookieHelper('UserName_datas')){
-		if($('#ec_cs_pannel').css('display') == 'none'){
-			$('#ec_cs_pannel').show();
-		}else{
-		//	$('body').append('<script type="text/javascript" id="kfonlinejs" src="http://cs.ecqun.com/?id=662150"></script>');
-		}
-	}else{
-		$('#kfonline').html("<a style='background:none;border:0px;' class='_login_tips_' href='' ><img style='margin-top:-60px;margin-left:-20px;'  src='"+_default_v4_path_+"/style/global/kfonline.png'></a>");
-	}
 }
 	$(window).on("scroll",
 		function() {

@@ -43,9 +43,9 @@ class User < ActiveRecord::Base
   validates :name,  presence: true, uniqueness: { case_sensitive: false}, 
                     exclusion: { in: BLACK_LIST, message: I18n.t("is_reserved_word") }, 
                     format: { without: /(\-| |\.|\/|\\)/, message: "不能包含横线, 斜线, 句点或空格" }
-  validates :email, presence: true, 
-                    uniqueness: { case_sensitive: false, message: "已经注册了一个用户，请重新选择" },
-                    format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  #validates :email, presence: true, 
+  #                  uniqueness: { case_sensitive: false, message: "已经注册了一个用户，请重新选择" },
+  #                  format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :phonenum, presence: true, 
                     uniqueness: { case_sensitive: false, message: "已经注册了一个用户，请重新选择" },
                     format: { with: /\d{11}/  }
@@ -151,7 +151,8 @@ class User < ActiveRecord::Base
 		hypertension = user.hypertension
 		operations = user.operations
 		sicknesses = user.sicknesses				
-		{:check=>true, :code=>200,:basic_info => basic_info,  :hyperlipidemia=>hyperlipidemia, :diabetes=>diabetes, :hypertension=>hypertension,  :operation=>operations, :sicknesses=>sicknesses }
+		sick_hists = user.sick_hists			
+		{:check=>true, :code=>200,:basic_info => basic_info,  :hyperlipidemia=>hyperlipidemia, :diabetes=>diabetes, :hypertension=>hypertension,  :operation=>operations, :sicknesses=>sicknesses,:sick_hists=> sick_hists}
 	end	
 
     end

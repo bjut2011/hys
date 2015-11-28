@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029154617) do
+ActiveRecord::Schema.define(version: 20151127141328) do
 
   create_table "activities", force: true do |t|
     t.string   "action"
@@ -55,6 +55,9 @@ ActiveRecord::Schema.define(version: 20151029154617) do
     t.string   "smokeinfo"
     t.string   "drink"
     t.integer  "smoke_account"
+    t.integer  "drink_account"
+    t.boolean  "have_allergy"
+    t.string   "allergy"
   end
 
   create_table "blog_images", force: true do |t|
@@ -124,23 +127,21 @@ ActiveRecord::Schema.define(version: 20151029154617) do
 
   create_table "doctors", force: true do |t|
     t.string   "name"
-    t.string   "avatar"
+    t.string   "avatar",                 default: ""
     t.text     "main_desc"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "use_gravatar"
     t.string   "url"
-    t.integer  "doctor_id"
-    t.text     "desc"
-    t.string   "photo"
+    t.integer  "doctor_id",              default: -1
     t.string   "hospital"
     t.string   "department"
-    t.string   "title"
     t.string   "room"
     t.string   "rank"
     t.integer  "level"
     t.string   "sex"
-    t.string   "speciality"
+    t.text     "speciality"
+    t.integer  "recommended",  limit: 1, default: 0
   end
 
   create_table "hyperlipidemia", force: true do |t|
@@ -290,20 +291,17 @@ ActiveRecord::Schema.define(version: 20151029154617) do
 
   create_table "sick_hists", force: true do |t|
     t.string   "title"
-    t.text     "desc"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "poster"
-    t.integer  "sick_case_id"
-    t.boolean  "public"
-    t.float    "price",        limit: 24
+    t.string   "sub_title"
+    t.string   "desc"
     t.string   "asset"
-    t.string   "user_id"
-    t.string   "integer"
+    t.integer  "user_id"
     t.integer  "size"
     t.string   "filename"
     t.string   "content_type"
     t.integer  "position"
+    t.datetime "sick_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sicknesses", force: true do |t|

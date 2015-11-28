@@ -8,7 +8,7 @@ $(document).ready(function() {
       singleFileUploads: true,
       removeProgressBarWhenCompleted: false,
       onFilesAdd: function(file) {
-        types = /(\.|\/)(mov|mp4|jpg|png)$/i;
+        types = /(\.|\/)(docx|doc|mov|mp4|jpg|png)$/i;
         if (types.test(file.type) || types.test(file.name)) {
           if (file.size > 100000000) {
             alert("上传失败：" + file.name + " 附件太大，超过100M");
@@ -38,13 +38,13 @@ $(document).ready(function() {
   <div class="primary-info">
     <%= form_for(Sickness.new,:remote => true) do |f| %>
       <dl class="form">
-        <dt><%= f.label '病历标题' %></dt>
-        <dd><%= f.text_field :title, id: "video-title",:placeholder => "如：一次冠心病检查" %></dd>
+        <dt><%= f.label '病历标题' %>&nbsp;&nbsp;&nbsp;&nbsp;一次冠心病检查</dt>
+        <dd><%= f.text_field :title, id: "video-title" %></dd>
       </dl>
       <dl class="form">
-        <dt><%= f.label '症状简要描述' %></dt>
+        <dt><%= f.label '症状简要描述' %>&nbsp;&nbsp;&nbsp;&nbsp;快走时胸闷、胸痛10年,加重1周</dt>
         <dd>
-          <%= f.text_area :desc, id: "video-desc", class: "long short", rows: '8',:placeholder => "如: 快走时胸闷、胸痛10年,加重1周" %>
+          <%= f.text_area :desc, id: "video-desc", class: "long short", rows: '8' %>
         </dd>
       </dl>
         <dl class="form">
@@ -56,7 +56,7 @@ $(document).ready(function() {
           </dd>
         </dl>
       <dl class="form">
-        <dt><%= f.label '上传病历扫描图像' %></dt>
+        <dt><%= f.label '上传病历扫描图像(图片或word)' %></dt>
       </dl>
     <% end %>
 </div>

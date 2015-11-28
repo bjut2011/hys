@@ -74,11 +74,14 @@ class UsersController < ApplicationController
       BodySign.create!(:basic_case_id=>basic_case.id,:swelling=>"",:status_name=>"")
       #cookies.permanent[:token] = @user.token
       #redirect_to member_path(@user.name), :notice => t('signed_up')
-      redirect_to :login
+      redirect_to "/perfectdata"
     else
       flash[:notice] = @user.errors.full_messages.first
       render :signup
     end
+  end
+   
+  def perfectdata
   end
 
   def create_login_session
