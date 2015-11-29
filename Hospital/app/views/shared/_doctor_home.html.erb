@@ -21,7 +21,7 @@ function marquee(i, direction){
 		}else{
 		  
 			obj.scrollLeft=obj.scrollLeft+1;
-			if(prscrollLeft == obj.scrollLeft)
+			if(prscrollLeft > 1000)
 		  {
 		    obj.scrollLeft=0;
 		  }
@@ -86,7 +86,7 @@ function marqueeStart(i, direction){
               <p class=""><a href="" class="hos_n word_hid"><%= doctor.hospital%></a><a href="" class="gray_1 dep_n word_hid"><%= doctor.room%></a></p>
               <p class="fs12 gray_1 mt8 d_det"><%= doctor.speciality%></p>
             </div>
-            <div class="doc_bottom"><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>" ><span class="btn btn_con fl">加号</span></a><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>"><span class="btn btn_con fr">咨询</span></a></div>
+            <div class="doc_bottom"><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>" ><span class="btn btn_con fl">爱心咨询</span></a><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>"><span class="btn btn_con fr">有偿咨询</span></a></div>
           </li>
           <% end %> 
         </ul>
@@ -96,4 +96,4 @@ function marqueeStart(i, direction){
     </div>
   </div>
 </div>
-<!--<script type="text/javascript">marqueeStart(1, "left");</script>-->
+<script type="text/javascript">marqueeStart(1, "left");</script>

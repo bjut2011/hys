@@ -222,6 +222,7 @@ GEM
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
+    tiny_mce (0.1.8)
     tooltipster-rails (3.2.6)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -271,6 +272,7 @@ DEPENDENCIES
   ruby-pinyin
   sass-rails
   settingslogic
+  tiny_mce
   tooltipster-rails
   uglifier
   unicorn
