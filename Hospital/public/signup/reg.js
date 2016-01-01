@@ -336,7 +336,7 @@ $(function() {
 function _validate(o, arge){
 	var arge = arge || {};
 	var objid = o.attr('id');
-        var accountreg = /^[a-zA-z][a-zA-Z0-9_]{2,9}$/;
+        var accountreg = /^[a-zA-z][a-zA-Z0-9_]{2,18}$/;
 	var truenameregch = /^[\u4E00-\u9FA5]{1,6}$/;
 	var truenamereg = /^[\u4E00-\u9FA5]{2,6}$|^[A-Za-z]{2,18}$/;
 	//var passwdreg = /^[0-9a-z~!@#$%^&*()_+:"|<>?;]{6,20}$/i; (([a-z]+[0-9]+)|([0-9]+[a-z]+))
@@ -428,7 +428,29 @@ function _validate(o, arge){
 				//$(".tips_in_word").hide();
 				showMsg(objid, msg_err+" 手机号码格式有误，请输入正确的手机号码",1);
 			}else{
-				showMsg(objid,'',3);
+					$.ajax({
+						url:JYUrl('check','name'),
+						data:{type:2,phonenum:$(o).val() },
+						type:'post',
+						dataType:'json',
+						async:false, 
+						success:(function(de){
+							_login_state = 1;
+							//if(de.code==1){
+							//	userBool = false;
+							//	_login_state = 0;
+							//	showMsg(objid, de.msg,1);
+							//}else if(de.code < 0){
+							if(de.code < 0){
+								userBool = false;
+								_login_state = 0;
+								showMsg(objid, de.msg,1);
+                                                                return false;
+							}else{
+								showMsg(objid, '&nbsp;',3);
+							}
+						})
+					});
 				return true;
 			}
 			break;
@@ -688,11 +710,34 @@ function _validate(o, arge){
 			break;
 		case 'user_name':
 			if(!$(o).val() ){
-				showMsg(objid, msg_err+"真实姓,名不能为空", 1);
+				showMsg(objid, msg_err+"用户名,名不能为空", 1);
 			}else if(!accountreg.exec($(o).val())){
-				showMsg(objid, msg_err+"实名才能预约，请输入真实姓名", 1);
+				showMsg(objid, msg_err+"用户名首字符不能为数字，长度不能大于18个字符，字母和数字", 1);
 			}else{
-				showMsg(objid, "&nbsp;", 3);
+					$.ajax({
+						url:JYUrl('check','name'),
+						data:{type:1,username:$(o).val() },
+						type:'post',
+						dataType:'json',
+						async:false, 
+						success:(function(de){
+							_login_state = 1;
+							//if(de.code==1){
+							//	userBool = false;
+							//	_login_state = 0;
+							//	showMsg(objid, de.msg,1);
+							//}else if(de.code < 0){
+							if(de.code < 0){
+								userBool = false;
+								_login_state = 0;
+								showMsg(objid, de.msg,1);
+                                                                return false;
+							}else{
+								showMsg(objid, '&nbsp;',3);
+							}
+						})
+					});
+				//showMsg(objid, "&nbsp;", 3);
 				return true;
 			}
 			break;

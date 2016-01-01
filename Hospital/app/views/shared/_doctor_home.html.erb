@@ -21,7 +21,7 @@ function marquee(i, direction){
 		}else{
 		  
 			obj.scrollLeft=obj.scrollLeft+1;
-			if(prscrollLeft > 1000)
+			if(prscrollLeft > 1300)
 		  {
 		    obj.scrollLeft=0;
 		  }
@@ -70,7 +70,7 @@ function marqueeStart(i, direction){
         <ul id="marquee1_1">
            <% @doctors.each do |doctor| %>
           <li>
-            <div class="layout mt20"><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>" class="fl c_doca">
+            <div class="layout mt20"><a href="/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>" class="fl c_doca">
               <% if doctor.avatar.include? "http" %>  
               <img oncontextmenu="return(false);" src="<%= doctor.avatar%>" alt="" width="90" height="100">
               <% else %>
@@ -78,7 +78,7 @@ function marqueeStart(i, direction){
                 <% end %>  
               </a>
               <div class="fl d_info">
-                <p><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>" class="d_name"><%= doctor.name%></a></p>
+                <p><a href="/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>" class="d_name"><%= doctor.name%></a></p>
                 <p class="fs12 gray_1"><%= doctor.rank%></p>
               </div>
             </div>
@@ -86,7 +86,7 @@ function marqueeStart(i, direction){
               <p class=""><a href="" class="hos_n word_hid"><%= doctor.hospital%></a><a href="" class="gray_1 dep_n word_hid"><%= doctor.room%></a></p>
               <p class="fs12 gray_1 mt8 d_det"><%= doctor.speciality%></p>
             </div>
-            <div class="doc_bottom"><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>" ><span class="btn btn_con fl">爱心咨询</span></a><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>"><span class="btn btn_con fr">有偿咨询</span></a></div>
+            <div class="doc_bottom"><a href="/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>" ><span class="btn btn_con fl">爱心咨询</span></a><a href="/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>"><span class="btn btn_con fr">有偿咨询</span></a></div>
           </li>
           <% end %> 
         </ul>

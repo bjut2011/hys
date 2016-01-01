@@ -5,8 +5,7 @@
     if (updateVideoForm.length > 0) {
       updateVideoForm.QiniuUploader({
         autoUpload: true,
-        singleFileUploads: true,
-        removeProgressBarWhenCompleted: false,
+        removeProgressBarWhenCompleted: true,
         onFilesAdd: function(file) {
           types = /(\.|\/)(jpg|png|mov|mp4)$/i;
           if (types.test(file.type) || types.test(file.name)) {
@@ -56,12 +55,12 @@ $('input#submit_sick_asset_info1').click(function(){
         </dd>
       </dl>
       <dl class="form">
-        <dt><label>更新本检查资料</label></dt>
+        <dt><label>更新本检查资料(图片或WORD)</label></dt>
        <dl>
     <% end %>
   </div>
   <div class="secondary-info">
-    <p id="video-filename">查看文件: <a href="http://<%= Settings.qiniu.bucket_domain %>/<%= sick_asset.asset %>"><%= sick_asset.filename %></a></p>
+    <p id="video-filename">查看文件: <a href="#" onClick="window.open('<%= sick_asset.asset.nil? ? "#":"http://"+Settings.qiniu.bucket_domain+"/"+sick_asset.asset %>','newwindow','height=500,width=611,scrollbars=yes,status=yes,screenX=400,screenY=400')" ><%= sick_asset.filename %></a></p>
     <%= qiniu_video_uploader_form callback_url: "/update_sick_asset/#{sick_asset.id}",
       callback_method: 'PATCH',
       bucket:        "#{Settings.qiniu.bucket}",
@@ -84,12 +83,13 @@ $('input#submit_sick_asset_info1').click(function(){
   <div class="third-info">
 </div>
       <div class="video-button-group">
-<input class="button primary" data-disable-with="检查资料保存中..." id="submit_sick_asset_info1" name="commit" type="submit" value="更新检查资料信息">
+<input class="button primary" data-disable-with="检查资料保存中..." id="submit_sick_asset_info1" name="commit" type="submit" value="保存检查资料信息">
   <div class="video-delete-btn">
     <%= link_to "删除本检查资料", sick_asset, :method => "delete", :remote=> true, class: "danger minibutton",
       :confirm => t('confirm_delete') %>
   </div>
       </div>
+  <div class="info-message"></div>
 </div>
   </div>
 <script>

@@ -5,8 +5,16 @@
       <div class="layout">
         <h2>找医生咨询</h2>
         <div id="consult_dep" class="fl gdl_tab ">
-            <h1 style="color: #F30202;font-size: 18px;">300名心血管专家咨询加号</h1>
+            <h1 style="color: #F30202;font-size: 18px;">300名心血管专家咨询</h1>
         </div>
+        <div class="s_search fr" style="margin-left:0">
+                            <i class="g_icon g_sicon"></i>
+
+                            <input type="text" name="search_key" id="search_key" value="输入医生姓名" class="search_input fl" placeholder="请输入您想搜索的医生" autocomplete="off" placeholders="请输入您想搜索的医院、医生、或疾病名称" style="color: rgb(153, 153, 153);">
+                                <input type="hidden" id="serch_type" name="search_type" value="0">
+                                <input type="hidden" id="no_city" name="no_city" value="0">
+                                <input type="submit" value="搜 索" id="btn_search" name="btnSearch" class="btn_border fl btn_search">
+         </div>
         <a href="" class="fr more "> <span></span> <i class="more_i g_icon"></i> </a> </div>
       <div class="layout cons">
         <div id="department" class="list_block layout">
@@ -22,6 +30,7 @@
                <td style=" width:120px;"> <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_valvulopathy" style="padding: 0 12px;width:20px;height:30px;vertical-align:middle;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">心脏瓣膜病</label></td>
                <td style=" width:120px;"> <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_pericardial" style="padding: 0 12px;width:20px;height:30px;vertical-align:middle;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">心包疾病</label></td>
                <td style=" width:120px;"> <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_heart-failure" style="padding: 0 12px;width:20px;height:30px;vertical-align:middle;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">心力衰竭</label></td>
+               <td style=" width:120px;"> <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_heart-failure" style="padding: 0 12px;width:20px;height:30px;vertical-align:middle;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">其他</label></td>
               </tr>
              </table>
          </div>
@@ -49,8 +58,8 @@
            <td style=" width:120px;">
               <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_blackness" style="padding: 0 12px;vertical-align:middle;width:20px;height:30px;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">眼前发黑</label>
           </td>
-           <td style=" width:140px;">
-              <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_lossconsciousness" style="padding: 0 12px;vertical-align:middle;width:20px;height:30px;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">一过性意识丧失</label>
+           <td style=" width:120px;">
+              <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_lossconsciousness" style="padding: 0 12px;vertical-align:middle;width:20px;height:30px;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">晕厥</label>
           </td>
           </tr>
           <tr>
@@ -77,6 +86,9 @@
            <td style=" width:120px;">
                <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_vision" style="padding: 0 12px;vertical-align:middle;width:20px;height:30px;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">视物模糊</label>
           </td>
+           <td style=" width:120px;">
+               <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_other2" style="padding: 0 12px;vertical-align:middle;width:20px;height:30px;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">其他</label>
+          </td>
            </tr>
             </table>
         </div>
@@ -90,9 +102,7 @@
            
               <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_beijing" style="padding: 0 12px;vertical-align:middle;width:20px;height:30px;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">北京</label>
            </td>
-           <td style=" width:100px;">
-               <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_shanghai" style="padding: 0 12px;vertical-align:middle;width:20px;height:30px;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">上海</label>
-           </td>
+           <td style=" width:120px;"> <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_other_area" style="padding: 0 12px;width:20px;height:30px;vertical-align:middle;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">其他</label></td>
            </tr>
          </table>
         </div>
@@ -105,17 +115,24 @@
            <td style=" width:90px;">
               <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_fw" style="padding: 0 12px;vertical-align:middle;width:20px;height:30px;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">阜外医院</label>
            </td>
-           <td style=" width:100px;">
-               <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_xh" style="padding: 0 12px;vertical-align:middle;width:20px;height:30px;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">协和医院</label>
+           <td style=" width:120px;">
+               <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_xh" style="padding: 0 12px;vertical-align:middle;width:20px;height:30px;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">安贞医院</label>
            </td>
+           <td style=" width:120px;">
+               <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_xh" style="padding: 0 12px;vertical-align:middle;width:20px;height:30px;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">海军总医院</label>
+           </td>
+           <td style=" width:120px;">
+               <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_xh" style="padding: 0 12px;vertical-align:middle;width:20px;height:30px;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">北京466医院</label>
+           </td>
+           <td style=" width:120px;"> <input name="autoLogin" type="checkbox" value="1" class="check-box" id="id_other_doc" style="padding: 0 12px;width:20px;height:30px;vertical-align:middle;"><label for="lo_nexr" style="padding: 0 4px;vertical-align:middle;">其他</label></td>
            <tr>
           </table>
         </div>
         
-        <div id="department" class="list_block layout" style="margin:0 auto;text-align:center; ">
+        <div id="department" class="list_block layout" style="margin:0 auto;text-align:center; padding-top:15px">
 			<p></p>
-                  <input class="" name="commit" id="btn_search_1" type="submit" style="background-color:#02c8b1;color:#fff;font-size:24px;padding:5px 35px 8px" value="找医生咨询加号">
-                  <input class="" name="commit" id="btn_celerity_consult" type="submit" style="background-color:#02c8b1;color:#fff;font-size:24px;padding:5px 35px 8px" value="快速在线咨询">
+                  <input class="" name="commit" id="btn_search_1" type="submit" style="background-color:#02c8b1;color:#fff;font-size:24px;padding:5px 35px 8px" value="指定医生咨询">
+                  <input class="" name="commit" id="btn_celerity_consult" type="submit" style="background-color:#02c8b1;color:#fff;font-size:24px;padding:5px 35px 8px" value="多医生免费咨询">
         </div>
       </div>
     </div>

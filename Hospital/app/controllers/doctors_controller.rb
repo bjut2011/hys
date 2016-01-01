@@ -128,11 +128,46 @@ skip_before_action :verify_authenticity_token
          @userid=@cur_user.id
          @username=@cur_user.name
       end
+      #Stus = {"tom"=>"心肌病","Aaron"=>"冠心病","Lucy"=>"心律失常","Lucy"=>"先天性心脏病","Lucy"=>"心脏瓣膜病","Lucy"=>"心包疾病","Lucy"=>"心力衰竭"}
+      st=Hash.new  
+      st["myocardiosis"]="心肌病"
+      st["coronary"]="冠心病"
+      st["arhythmia"]="心律失常"
+      st["chd"]="先天性心脏病"
+      st["valvulopathy"]="心脏瓣膜病"
+      st["pericardial"]="心包疾病"
+      st["heart-failure"]="心力衰竭"
+      sql=""
+      for key,value in st 
+        if params[key]
+           if sql !=""
+              sql+=" or speciality like '%" +value+"%' "
+           else
+              sql+=" speciality like '%" +value+"%' "
+           end
+        end
+      end
+      
+      if params[:search_key]
+           if sql !=""
+              sql+=" and name like '%" +params[:search_key]+"%' "
+           else
+              sql+=" name like '%" +params[:search_key]+"%' "
+           end
+      end
       @neworsubmit=false
       if  params[:neworsubmit]
           @neworsubmit=true
       end
-      @doctors= Doctor.all
+      #if params[:search_key]
+      if sql !=""
+         name=params[:search_key]
+         #@doctors= Doctor.where(:name =>params[:search_key]).all
+         # @doctors= Doctor.where("name like :kw ", :kw=>"%#{params[:search_key]}%")
+         @doctors= Doctor.where(sql)
+      else
+         @doctors= Doctor.all
+      end
    end
    
    def getdoclist

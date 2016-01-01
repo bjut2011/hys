@@ -13,14 +13,22 @@
                         &nbsp;&gt;&nbsp;
                     </li>
                     <li class="fl">
-                        <a class="fs14" href="">
-                            资讯
+                        <a class="fs14" href="#">
+                            华人资讯
                         </a>
                         &nbsp;&gt;&nbsp;
                     </li>
-                    <li class="fl">
-                        <a class="fs14" href="">
-                            新闻资讯
+                    <li class="fl" style="">
+                        <a class="fs14" href="#">
+                           <% if @infotype==1 %>
+                            医疗信息
+                           <% else %>
+                                <% if @infotype==2 %>
+                                   名医文章
+                                <% else %>
+                                   典型病例
+                                 <% end %>
+                           <% end %>
                         </a>
                         &nbsp;&gt;&nbsp;
                     </li>
@@ -30,7 +38,7 @@
                 </ul>
             </div>
             <div style="float:left;wdith:100%; display:block;">
-                <div class="main w660 fl mt10">
+                <div class="main w960 fl mt10">
                     <div class="panel">
                         <div class="panel-body  pb8 bb">
                             <div class="panel-info-title">
@@ -41,9 +49,9 @@
                                 </h1>
                                 <p class="blue_1 tc mb10">
                                     <span class="mr15">
-                                        2015-11-26 09:46
+                                         <%=@aricle_date %>
                                     </span>
-                                    <span class="mr15">
+                                    <span class="mr15" style="display:none">
                                         来源：
                                         <a href="" rel="nofollow" target="_blank">
                                             北京大学人民医院
@@ -51,12 +59,15 @@
                                     </span>
                                     <!-- 转载 -->
                                     <span>
-                                        责编：<%=@author %>
+                                        作者：<%=@author %>
                                     </span>
                                 </p>
                             </div>
-                            <div class="panel-info-cont">
+                              <% if @bshow %>
+                            <div class="panel-info-cont  ">
+                              <iframe src="<%=@url %>"  width="98%" height="600"></iframe>
                             </div>
+                              <% end %>
                         </div>
                         <div class="layout panel-footer" style="display:none">
                             <div style="float:left;width:48%;">
@@ -146,7 +157,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="panel mb0">
+                    <div class="panel mb0" style="display:none">
                         <div class="panel-head layout">
                             <h4 class="panel-title fl">
                                 网友评论

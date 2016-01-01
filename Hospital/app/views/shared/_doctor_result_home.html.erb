@@ -1,7 +1,7 @@
 <div class="area mb30 layout">
       <div class="comm_left_main w650 fl">
               <div class="comm_con w650 layout" id="thks_bind_id">
-          <div class="function_bar">
+          <div class="function_bar" style="display:none">
             <div class="fun_chose fs12 fl">
             </div>
             <div class="fun_ico fs12 fl">
@@ -11,8 +11,8 @@
               </ul>
             </div>
               <div class="pages_ta fs12 fr">
-              <div class="fl pages_ta_mun">共 <strong>38</strong> 个医生</div>
-              <div class="pages_mun fr">
+              <div class="fl pages_ta_mun" style="display:none">共 <strong>38</strong> 个医生</div>
+              <div class="pages_mun fr" style="display:none">
               <a id="prev_page" class="prev_page_a" href="javascript:void(0);" title="上一页" style="color:#818181;"></a>
               <a id="next_page" class="next_page_a" href="javascript:void(0);" title="下一页"></a>
               1/383
@@ -20,28 +20,31 @@
               </div>
           </div>
           <div class="search_list layout">
+            <% if @doctors.size <1 %>
+            <h2 style="font-size: 22px;color: #FF0000;">没有找到医生</h2>
+            <% end %>
             <ul>
                  <% @doctors.each do |doctor| %>
                                                    <li class="search_item docter_item">
                 <div class="left_img_big">
                 <% if doctor.avatar.include? "http" %> 
-		<a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>&message=<%= @unread_count %>&neworsubmit=<%= @neworsubmit %>"><img oncontextmenu="return(false);" src="<%= doctor.avatar%>"></a>
+		<a href="/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>&message=<%= @unread_count %>&neworsubmit=<%= @neworsubmit %>"><img oncontextmenu="return(false);" src="<%= doctor.avatar%>"></a>
                 <% else %> 
-		<a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>&message=<%= @unread_count %>&neworsubmit=<%= @neworsubmit %>"><img oncontextmenu="return(false);" src="../<%= doctor.avatar%>"></a>
+		<a href="/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>&message=<%= @unread_count %>&neworsubmit=<%= @neworsubmit %>"><img oncontextmenu="return(false);" src="../<%= doctor.avatar%>"></a>
                 <% end %>
                 </div>
                 <div class="right_mun">已预约人次 <strong>24</strong></div>
                 <div class="right_btn"><a class="add_book patch-float-margin " type="1" docid="100001809" href="javascript:void(0);">收藏</a> <em>|</em> 
-                <a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>&message=<%= @unread_count %>&neworsubmit=<%= @neworsubmit %>" class="addCom" docid="100001809" depid="100000711" ds="0" img="http://images.91160.com/upload/2912/doctor/1/doctor_100001809.jpg" uid="100000788" cid="2912" type="1" doctor_name="李玉" zcname="" unit_name="中国人民解放军第三0二医院" dep_name="肿瘤放射治疗中心">点评</a></div>
+                <a href="/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>&message=<%= @unread_count %>&neworsubmit=<%= @neworsubmit %>" class="addCom" docid="100001809" depid="100000711" ds="0" img="http://images.91160.com/upload/2912/doctor/1/doctor_100001809.jpg" uid="100000788" cid="2912" type="1" doctor_name="李玉" zcname="" unit_name="中国人民解放军第三0二医院" dep_name="肿瘤放射治疗中心">点评</a></div>
                 <div class="doc_info fl">
-                <h2><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>&message=<%= @unread_count %>&neworsubmit=<%= @neworsubmit %>" title="<%= doctor.name %>"><%= doctor.name %> </a><span><%= doctor.rank %> </span> </h2>
+                <h2><a href="/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>&message=<%= @unread_count %>&neworsubmit=<%= @neworsubmit %>" title="<%= doctor.name %>"><%= doctor.name %> </a><span><%= doctor.rank %> </span> </h2>
                 <div class="h_info layout">
                 <p> <%= doctor.hospital %> <br><%= doctor.room %></p>
                 </div>
                 <div class="doc_sbtn">
-                <ul class="fun_btn_ul layout">
-                  <li class="gh_ico" title="可预约"><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>&message=<%= @unread_count %>&neworsubmit=<%= @neworsubmit %>" title="预约">预约</a></li>
-                  <li class="zx_ico_no" title="可咨询"><a href="http://123.56.109.236/hryisheng/doctor.action?id=<%=doctor.doctor_id%>" title="咨询">咨询</a></li>
+                <ul class="fun_btn_ul layout" style="display:none">
+                  <li class="gh_ico" title="可预约"><a href="/hryisheng/doctor.action?id=<%=doctor.doctor_id%>&usedId=<%= @userid%>&username=<%= @username%>&message=<%= @unread_count %>&neworsubmit=<%= @neworsubmit %>" title="预约">预约</a></li>
+                  <li class="zx_ico_no" title="可咨询"><a href="/hryisheng/doctor.action?id=<%=doctor.doctor_id%>" title="咨询">咨询</a></li>
                   <li class="zz_ico_no" title="可加号"><a href="javascript:void(0);" title="加号">加号</a></li>
                   <li class="vip_ico_no" title="私人医生"><a href="javascript:void(0);" title="私人医生">私人医生</a></li>
                 </ul>
@@ -56,8 +59,8 @@
               </li>
               <% end %>
                          </ul>
-            <div class="pages_wrap layout">
-             <div class="pages"><p id="s_pager" class="page"><!--共 <strong> 2 </strong> 条记录&nbsp;--><strong>1</strong> <a href="">2</a> ...<a href="" class="n">383</a><a href="" class="n">下一页</a><a href="" class="n">末页</a></p></div>            </div>
+            <div class="pages_wrap layout" style="display:none">
+             <div class="pages"><p id="s_pager" class="page"><!--共 <strong> 2 </strong> 条记录&nbsp;--><strong>1</strong> <a href="" style="display:none">2</a> ...<a href="" class="n" style="display:none">383</a><a href="#" class="n">下一页</a><a href="" class="n">末页</a></p></div>            </div>
           </div>
         </div>
       </div>

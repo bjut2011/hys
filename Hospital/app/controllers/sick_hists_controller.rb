@@ -10,6 +10,10 @@ class SickHistsController < ApplicationController
         @sick_hist.size = params[:fsize]
         @sick_hist.filename = params[:fname]
         @sick_hist.content_type = params[:mimeType]
+        @sick_hist.title = params[:custom_fields][:title] 
+        @sick_hist.sub_title = params[:custom_fields][:sub_title] 
+        @sick_hist.desc = params[:custom_fields][:desc] 
+        @sick_hist.sick_date = params[:custom_fields][:sick_date] 
 	else
         @sick_hist.title = params[:sick_hist][:title] 
         @sick_hist.sub_title = params[:sick_hist][:sub_title] 
@@ -37,6 +41,7 @@ class SickHistsController < ApplicationController
           #track_activity sick_hist, sick_hist.sick_case.id
         end
         f.json { render :json => {} }
+        #f.json { render :json => {} }
       else
         sick_hist.update_attributes(params[:sick_hist])
         f.js do

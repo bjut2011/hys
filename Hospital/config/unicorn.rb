@@ -4,7 +4,7 @@ timeout 30
 APP_PATH = File.expand_path("../..", __FILE__)
 working_directory APP_PATH
 
-listen 3001, :tcp_nopush => false
+listen 3000, :tcp_nopush => false
 listen "/tmp/unicorn.sock", :backlog => 64
 
 stderr_path APP_PATH + "/log/unicorn.stderr.log"

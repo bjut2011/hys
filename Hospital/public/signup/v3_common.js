@@ -206,18 +206,14 @@ $(".Kefu-fiexd li").hover(function(){
 
 //@jyurl
 function JYUrl(cName,aName,args, domain){	
-	var sUrl =   ( (domain && domain != undefined ) ?  ('http://' + domain) :  ( (document.location.protocol =='https:' ? 'https://' : 'http://') + location.hostname)) + "/" + cName;
-	if(aName!=undefined && aName){
-		sUrl = sUrl + '/' + aName;
-	}	
-	sUrl =  sUrl + '.html';
-	if(args!=undefined && args){
-		sUrl = sUrl + '?';
-		for(k in args){
-			sUrl += k+"="+args[k] + "&";
-		}
-	}	
-	return sUrl;
+    var hostName = domain || location.hostname;
+    var sUrl = "http://"+hostName+":"+location.port+"/"+cName+"/"+aName;
+    if(args!=undefined){
+            for(k in args){
+                    sUrl += "/"+k+"-"+args[k];
+            }
+    }	
+    return (sUrl+".html").toLowerCase();
 }
 
 /*互动样式 文字提示*/

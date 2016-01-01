@@ -1,5 +1,5 @@
 class Doctor < ActiveRecord::Base
-  attr_accessible :name, :avatar,:use_gravatar, :main_desc,  :url,:doctor_id, :hospital, :room, :rank, :level, :sex, :speciality,:desc,:photo,:department,:title
+  attr_accessible :name, :avatar,:use_gravatar, :main_desc,  :url,:doctor_id, :hospital, :room, :rank, :level, :sex, :speciality
   has_many :basic_cases
   has_many :replies
   has_many :reservations
@@ -63,12 +63,13 @@ class Doctor < ActiveRecord::Base
 		  {:check=>false, :code=>400,:msg=>"Not Found Doctor"}
  	else
 		basic_list = []
-		basic_cases = doctor.basic_cases.where(:has_reply=>false).limit(10)
+		basic_cases = doctor.basic_cases.where(:has_reply=>false).limit(10).order('updated_at DESC')
 		basic_cases.each do |basic_case|
 			basic_case_id =  basic_case.id
 			basic_case_title = basic_case.main_desc
 			user_id = basic_case.user.id
 			process = basic_case.process
+			case_time = basic_case.updated_at
 			have_ct = false
 			if !basic_case.sick_assets.nil?
 				basic_case.sick_assets.each do |sick_asset|
@@ -77,7 +78,8 @@ class Doctor < ActiveRecord::Base
 					end
 				end
 			end
-			if basic_case.public == true && basic_case.user.basic_info.edited == true
+			#if basic_case.public == true && basic_case.user.basic_info.edited == true
+			if basic_case.user.basic_info.edited == true
 				user_name = basic_case.user.basic_info.name 
 				user_age = basic_case.user.basic_info.age
 				user_gender = basic_case.user.basic_info.gender
@@ -86,9 +88,37 @@ class Doctor < ActiveRecord::Base
 				user_age = "not open"
 				user_gender = "not open"
 			end  
-			basic_list << {:basic_case_id =>basic_case_id, :basic_case_title=>basic_case_title, :user_id=>user_id, :user_name=>user_name, :user_age=>user_age, :user_gender=>user_gender, :have_ct=>have_ct,:type=>process }
+			basic_list << {:basic_case_id =>basic_case_id, :basic_case_title=>basic_case_title, :user_id=>user_id, :user_name=>user_name, :user_age=>user_age, :user_gender=>user_gender, :have_ct=>have_ct,:type=>process, :case_time => case_time  }
 		end
-		{:check=>true, :result=>basic_list}
+		free_list = []
+		free_cases = BasicCase.where(:process=>'free',:has_reply=>false).limit(10).order('updated_at DESC')
+		free_cases.each do |basic_case|
+			basic_case_id =  basic_case.id
+			basic_case_title = basic_case.main_desc
+			user_id = basic_case.user.id
+			process = basic_case.process
+			case_time = basic_case.updated_at
+			have_ct = false
+			if !basic_case.sick_assets.nil?
+				basic_case.sick_assets.each do |sick_asset|
+					if sick_asset.asset_type == "CT"
+						have_ct = true
+					end
+				end
+			end
+			#if basic_case.public == true && basic_case.user.basic_info.edited == true
+			if basic_case.user.basic_info.edited == true
+				user_name = basic_case.user.basic_info.name 
+				user_age = basic_case.user.basic_info.age
+				user_gender = basic_case.user.basic_info.gender
+			else
+				user_name = "not open"
+				user_age = "not open"
+				user_gender = "not open"
+			end  
+			free_list << {:basic_case_id =>basic_case_id, :basic_case_title=>basic_case_title, :user_id=>user_id, :user_name=>user_name, :user_age=>user_age, :user_gender=>user_gender, :have_ct=>have_ct,:type=>process, :case_time => case_time }
+		end
+		{:check=>true, :result=>basic_list,:free=>free_list}
 	end
   end
 

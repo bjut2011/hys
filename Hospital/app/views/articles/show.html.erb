@@ -8,13 +8,11 @@
   
     <link href="/info/layout_box.css" rel="stylesheet" rev="stylesheet"
     type="text/css" media="all">
-    <script type="text/javascript" charset="utf-8" src="/info/visitor">
-    </script>
         <link href="/info/jiathis_share.css" rel="stylesheet" type="text/css">
    <% if @type ==1 %>
 <%= render "shared/content_doc" %>
      <% else %>
-<%= render "shared/content" %>
+<%= render "shared/content_doc" %>
     <% end %>
    
    
@@ -67,10 +65,6 @@
     
    
     <!-- 统计代码 -->
-    <script type="text/javascript" src="/info/tj.js">
-    </script>
-    <script src="/info/cityjson" type="text/javascript">
-    </script>
     <script>
         $(function() {
             $('.tab').tab({
@@ -166,11 +160,6 @@
 
         });
 
-        var jiathis_config = {
-            summary: " ",
-            title: $('.panel-info-title > h3').text() + '_健康资讯_就医160网',
-            pic: $('.panel-info-cont').find('img').first().attr('src')
-        };
         function AddFavorite() {
             try {
                 window.external.addFavorite(document.URL, document.title);
@@ -195,8 +184,4 @@
                 //if(rs.status == true) { //成功返回 } 
             });
         });
-    </script>
-    <script type="text/javascript" src="/info/jia.js" charset="utf-8">
-    </script>
-    <script type="text/javascript" src="/info/plugin.client.js" charset="utf-8">
     </script>

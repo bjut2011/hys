@@ -7,6 +7,19 @@ class BasicInfosController < ApplicationController
     @basic_info = @user.basic_info
   end
 
+  def asked 
+     @user = current_user
+     basic_cases = @user.basic_cases;
+     @doctor_groups = []
+     @basic_groups = []
+     basic_cases.each do |basic_case|
+     	if !basic_case.doctor.nil? and @doctor_groups.exclude?(basic_case.doctor)
+		@doctor_groups << basic_case.doctor
+		@basic_groups << basic_case
+	end
+     end
+  end
+
   def check_my_doctor
     @user = current_user
     commit = params[:commit] 
@@ -119,6 +132,16 @@ class BasicInfosController < ApplicationController
     @basic_case = BasicCase.find(params[:basic_case_id].to_i)
     body_sign = @basic_case.body_sign
     @status_names =body_sign.status_name.split  
+    @msg = "返回付款页面"
+  end
+
+  def show_doctor_case
+    @user = current_user
+    @basic_case = BasicCase.find(params[:basic_case_id].to_i)
+    body_sign = @basic_case.body_sign
+    @status_names =body_sign.status_name.split  
+    @msg = "返回我的经治医生"
+    render :action => 'show_commit_case'
   end
 
   def edit_case
@@ -229,7 +252,8 @@ class BasicInfosController < ApplicationController
 
   def update_faq
     main_desc = params[:basic_case][:main_desc]
-    if main_desc.nil? or main_desc.blank?
+    detail_desc = params[:basic_case][:detail_desc]
+    if main_desc.nil? or main_desc.blank? or detail_desc.nil? or detail_desc.blank?
     	redirect_to "/createmyfaq",:flash => { :success => 'main_desc not null .'}
  	return
     end

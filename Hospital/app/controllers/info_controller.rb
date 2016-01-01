@@ -7,7 +7,7 @@ class InfoController < ApplicationController
     @user = User.new
     session[:return_to] = request.url
     #@doctors = Doctor.where(:recommended=>1).limit(5)
-    @doctors = Doctor.all.limit(5)
+    @doctors = Doctor.all.limit(10)
     @count = User.all.count
     @users = User.order('id desc').page(params[:page]).per(60)
     @cur_user ||= User.find_by_token(cookies[:token]) if cookies[:token]
@@ -19,11 +19,11 @@ class InfoController < ApplicationController
     end
     @docs=nil
     begin
-       Net::HTTP.start('123.56.109.236', 80) {|http|
-         response = http.get('/hryisheng/json/getCase.action')
-         puts response.body
-         @docs =  JSON.parse response.body
-       }
+       #Net::HTTP.start('123.56.229.208', 80) {|http|
+       #  response = http.get('/hryisheng/json/getNews.action')
+       #  puts response.body
+       #  @docs =  JSON.parse response.body
+       #}
     rescue
     end
     if @docs.nil?
@@ -35,15 +35,15 @@ class InfoController < ApplicationController
     docs=nil
     path=""
     case params[:cid].to_i
-    when 1
+    when 3
        path='/hryisheng/json/getCase.action'
     when 2
        path='/hryisheng/json/getAricle.action'
-    when 5
-       path='/hryisheng/json/getAricle.action'
+    when 1
+       path='/hryisheng/json/getNews.action'
     end
     begin
-       Net::HTTP.start('123.56.109.236', 80) {|http|
+       Net::HTTP.start('123.56.229.208', 80) {|http|
          response = http.get(path)
          puts response.body
          docs =  JSON.parse response.body

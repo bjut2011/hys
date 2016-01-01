@@ -1,7 +1,10 @@
 Onestep::Application.routes.draw do
 
+  get 'im/client'
+
   get 'articles/new'
   get 'articles/show'
+  get 'articles/medicalinfo'
 
   root :to => 'info#marketing'
   get '/api/money'  => 'api#money'
@@ -33,6 +36,8 @@ Onestep::Application.routes.draw do
   get "/ajax/getforumbycategory.html"  => "info#getdocs", :defaults => { :format => 'json' }
   post "/ajax/getforumbycategory.html"  => "info#getdocs", :defaults => { :format => 'json' }
   get "/healthcenter"  => "users#health_center"
+  get "/check/name.html"  => "users#checkname"
+  post "/check/name.html"  => "users#checkname"
   # Use patch verb for editing posts, use put verb for creating a new post
   match 'blog_images', to: 'blog_images#create', via: [:put, :patch]
 
@@ -126,6 +131,7 @@ Onestep::Application.routes.draw do
   end
 
   get "/createmyfaq" => "basic_infos#show"
+  get "/myaskeddoctors" => "basic_infos#asked"
   get "/showmyinfo" => "basic_infos#edit"
   get "/editmysick" => "basic_infos#edit_sick"
   get "/editmyoper" => "basic_infos#edit_oper"
@@ -159,6 +165,7 @@ Onestep::Application.routes.draw do
   get "/:member_name/showmystatus" => "users#showmystatus", :as => "showmystatus"
   delete "/:member_name/:course_name" => "courses#destroy"
   get "/:member_name/:basic_case_id/show_commit_case" => "basic_infos#show_commit_case" , :as => "show_commit_case"
+ get "/:member_name/:basic_case_id/show_doctor_case" => "basic_infos#show_doctor_case" , :as => "show_doctor_case"
   get "/:member_name/:message_name/editmessage" => "messages#edit" , :as => "edit_message"
   get "/:member_name/:basic_case_id/editcase" => "basic_infos#edit_case" , :as => "edit_basic_case"
   ##post "/:member_name/:basic_case_id/clonecase" => "basic_infos#clonecase" , :as => "clone_basic_case"

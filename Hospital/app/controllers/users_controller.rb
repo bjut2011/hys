@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     if @user.valid?
       @user.save!
       UserMailer.welcome(@user).deliver
-      BasicInfo.create!(:name=>"李刚",:gender=>"male",:edited=>false,:user_id=>@user.id,:weight=>64,:height=>175,:age=>30)
+      BasicInfo.create!(:edited=>false,:user_id=>@user.id,:weight=>0,:height=>0)
       Hypertension.create!(:user_id=>@user.id,:ishave=>false,:before_high=>120,:before_low=>60,:now_high=>120,:now_low=>60,:diagnosis_date=>DateTime.new(2001,2,3) )
       Diabetes.create!(:user_id=>@user.id,:ishave=>false,:after_meal=>120,:limosis=>60,:diagnosis_date=>DateTime.new(2001,2,3) )
       Hyperlipidemia.create!(:user_id=>@user.id,:ishave=>false,:diagnosis_date=>DateTime.new(2001,2,3) )
@@ -138,6 +138,37 @@ class UsersController < ApplicationController
      if current_user
           redirect_to "/"+current_user.name
      end
+  end
+  
+  def checkname
+    msg="ok"
+    type= params[:type].to_i
+    code =1
+    if type==1
+       curuser = User.find_by(name: params[:username])
+       if curuser
+           code =-1
+           msg="用户名已经被使用，请换其他用户名"
+       end
+    elsif type==2
+       curuser = User.find_by(phonenum: params[:phonenum].strip)
+       if curuser
+           code =-1
+           msg="电话号码已经被使用，请换其他电话号码"
+       end
+    elsif type==3
+        
+      @user = User.find_by(name: params[:username])
+      if @user && @user.authenticate(params[:password])
+      else
+         msg="用户名或密码有错"
+         code = -1
+      end
+    end
+    respond_to do |format|
+      format.html {render text: "Error1-#{msg}"}
+      format.json {render :json => {:code => code,:msg =>"#{msg}"}}
+    end
   end
 
 end

@@ -14,7 +14,7 @@ development:
   reconnect: false
   database: onestep_development
   pool: 5
-  host: 123.56.109.236
+  host: 127.0.0.1
   username: root
   password: 123456
   socket: /var/run/mysqld/mysqld.sock
@@ -27,7 +27,7 @@ test:
   encoding: utf8
   reconnect: false
   database: onestep_test
-  host: 123.56.109.236
+  host: 123.56.229.208
   pool: 5
   username: root
   password: 123456
@@ -38,7 +38,7 @@ production:
   encoding: utf8
   reconnect: false
   database: onestep_development
-  host: 123.56.109.236
+  host: 127.0.0.1
   pool: 5
   username: root
   password: 123456

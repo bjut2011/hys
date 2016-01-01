@@ -5,8 +5,7 @@ $(document).ready(function() {
   if (createVideoForm.length > 0) {
     createVideoForm.QiniuUploader({
       autoUpload: true,
-      singleFileUploads: true,
-      removeProgressBarWhenCompleted: false,
+      removeProgressBarWhenCompleted: true,
       onFilesAdd: function(file) {
         types = /(\.|\/)(docx|doc|mov|mp4|jpg|png)$/i;
         if (types.test(file.type) || types.test(file.name)) {
@@ -75,7 +74,7 @@ $(document).ready(function() {
       bucket:        "#{Settings.qiniu.bucket}",
       id:            'create-video-uploader',
       callback_method: 'POST',
-      custom_fields: { user_id: user.id },
+      custom_fields: { user_id: user.id,  title:"",  sub_title:"", desc:"",sick_date:"" },
       progress_bar_id: 'progress-bar' do %>
 
         <input id="fileupload" name="file" type="file">
@@ -112,9 +111,9 @@ $(document).ready(function(){
 
 	var datepicker = new Pikaday({ 
 		field:		jQuery('#datepicker')[0],  
-		minDate:	new Date('2000-01-01'), 
+		minDate:	new Date('1980-01-01'), 
 		maxDate:	new Date('2020-12-31'), 
-		yearRange:	[2000,2020],
+		yearRange:	[1980,2020],
 		i18n: 		i18n,
 		onSelect: 	function() {
 			var date = document.createTextNode(this.getMoment().format('YYYY-MM-DD') + ' '); //生成的时间格式化成 2013-09-25
@@ -214,6 +213,27 @@ else{
        sub_title.append("<option value='nostatus'>未确诊</option>");
        sub_title.append("<option value='othersick'>其他疾病</option>");
   }
+});
+
+$('input#submit_operation_info').click(function(){
+         $('form#new_operation').submit();
+});
+$('#sick_hist_title').on('change', function() {
+	var value = $('#sick_hist_title').val();
+	 $('#x\\:title').attr('value', value);
+	 $('#x\\:sub_title').attr('value', value);
+});
+$('#sick_hist_sub_title').on('change', function() {
+	var value = $('#sick_hist_sub_title').val();
+	 $('#x\\:sub_title').attr('value', value);
+});
+$('#video-desc').on('change', function() {
+	var value = $('#video-desc').val();
+	 $('#x\\:desc').attr('value', value);
+});
+$('#datepicker').on('change', function() {
+	var value = $('#datepicker').val();
+	 $('#x\\:sick_date').attr('value', value);
 });
 </script>
 <% end %>

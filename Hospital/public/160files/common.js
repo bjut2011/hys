@@ -2,12 +2,16 @@ var _default_img_path_ = '/static/v2/style';
 var VERSION = 2014092388;
 function search() {
 	var search_key = $('#search_key').val();
-	if(search_key=='' || search_key=='输入医院名称/医生姓名/科室名称') {
+	if(search_key=='' || search_key=='输入医生姓名') {
 		return false;
 	}
 	var serch_type = $('#serch_type').val();
         var noCity = $('#no_city').val();
-	location.href = JYUrl('main','search',{search_key:search_key,serch_type:serch_type, no_city:noCity});	
+        var hostName = location.hostname;
+        var sUrl = "http://"+hostName+":"+location.port+"/search/home_doctor?";
+        sUrl+="search_key="+encodeURIComponent(search_key);
+
+	location.href = sUrl;	
 	return false;
 }
 
@@ -16,7 +20,7 @@ function setvalue(idvalue,sUrl){
          var para=null;
          if(cbox){
             if (cbox.checked){
-             para=idvalue+"="+cbox.checked;
+             para=idvalue+"="+cbox.value;
              sUrl+="&";
              sUrl+=para;
             }
@@ -31,9 +35,10 @@ function search_1() {
         var myocardiosis=null
         if (cmyocardiosis !=null)
         {
-           myocardiosis=cmyocardiosis.checked;
+           myocardiosis=cmyocardiosis.value;
         }
-        sUrl +=("myocardiosis="+myocardiosis);
+        //sUrl +=("myocardiosis="+myocardiosis);
+        sUrl=setvalue("myocardiosis",sUrl);
         sUrl=setvalue("coronary",sUrl);
         sUrl=setvalue("arhythmia",sUrl);
         sUrl=setvalue("chd",sUrl);
@@ -175,7 +180,7 @@ $('#ec_cs_pannel').hide();
 	});
     
    
-	text_tips('search_key','输入医院名称/医生姓名/科室名称');
+	text_tips('search_key','输入医生姓名');
 	
 	$('._login_div_tips_').on('click', '._login_tips_', function(e) {
 		var _login_call_href = $(this).hasClass('_nolink_')?'':$(this).attr('href');
